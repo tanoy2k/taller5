@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
 			throws IOException {
 		PrintWriter out = resp.getWriter();
 
-		out.println( msg  );
+		out.println( msg );
 		
 				
 	}

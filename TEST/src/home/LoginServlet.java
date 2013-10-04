@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 				
 			} 
 		else {
-			response(resp, "invalid login");
+			response(resp, "Invalid login");
 		}
 	}
 	private void response(HttpServletResponse resp, String msg)

@@ -10,7 +10,7 @@
 <form action="login" method="post">
 		<table>
 			<tr>
-				<td>User</td>
+				<td>Users</td>
 				<td><input name="user" /></td>
 			</tr>
 			<tr>

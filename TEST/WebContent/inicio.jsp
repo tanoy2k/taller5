@@ -24,6 +24,14 @@
 		</table>
 		<input type="submit" />
 	</form>
+	
+	
+	<form action=crearusuario.jsp>
+	<td>
+	Crear Usuario
+	</td>
+	<input type="submit" />
+	</form>
 
 </body>
 </html>

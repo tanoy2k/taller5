@@ -12,9 +12,12 @@ public class datos {
 
 	String a;
 	public ResultSet rs;
-	float valor = 0;
+	public float valor = 0;
 	CallableStatement cs = null;
 	Connection con;
+	public String articulo;
+	public String articulos;
+	
 
 	public void conectar() {
 
@@ -28,6 +31,18 @@ public class datos {
 			e.printStackTrace();
 		} finally {
 		}
+	}
+	
+	public void setarticulo (String articulo)
+	{
+		
+		this.articulo=articulo;
+		
+	}
+	public void getprueba()
+	{
+		this.getarticulo("3");
+		
 	}
 
 	public void getarticulo(String articulo) {

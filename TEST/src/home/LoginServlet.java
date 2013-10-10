@@ -16,15 +16,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	/**
-	 * 
-	 */
+	public String usu="em";
+	public String pass="em";
 	private static final long serialVersionUID = 8438320730846730385L;
 	@Override
 	
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+	
+	
+	
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		String articulo = req.getParameter("articulo");
+		
+		
 		
 		datos datos=new datos();
 		datos.getarticulo(articulo);

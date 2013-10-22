@@ -9,12 +9,14 @@
 <body>
 <form action=alta.jsp method=post>
 <table>
-<tr>
-<input name="user">
-
-</tr>
-
+<tr><td>Usuario</td><td><input name="user"></td></tr>
+<tr><td>Password</td><td><input type="password" name="password"></td></tr>
+<tr><td>Reitere el password</td><td><input type="password" name="password2"></td></tr>
 </table>
+<input type="submit" />
 </form>
 </body>
+<%
+
+%>
 </html>

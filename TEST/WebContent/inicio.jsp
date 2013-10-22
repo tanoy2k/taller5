@@ -28,9 +28,8 @@
 	
 	<form action=crearusuario.jsp>
 	<td>
-	Crear Usuario
 	</td>
-	<input type="submit" />
+	<input type="submit" value="Crear Usuario"/>
 	</form>
 
 </body>

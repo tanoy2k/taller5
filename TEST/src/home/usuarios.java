@@ -80,7 +80,7 @@ public class usuarios extends HttpServlet {
 		
 	}
 	
-	public int existeusuario(String usuario) throws SQLException
+	public boolean existeUsuario(String usuario) throws SQLException
 	{
 		datos data=new datos();
 		data.conectar();
@@ -91,9 +91,9 @@ public class usuarios extends HttpServlet {
 		rs=stmt.executeQuery(SQL);
 		
 		if (rs.wasNull())
-			return 0;
+			return false;
 		else		
-		return 1;	
+		return true;	
 		
 	}
 

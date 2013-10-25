@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
     <%@ page import="java.util.Collection" %>
-    <%@ page import="home.datos" %>
+    <%@ page import="home.datos" %> 
     <%@ page import="home.LoginServlet" %>
  <jsp:useBean id="datos" class="home.datos" scope="application"/>
  <jsp:useBean id="login" class="home.LoginServlet" scope="application"/>
@@ -18,12 +18,13 @@
 <%
 if (login.pass.equals(request.getParameter("password")))
 	{
-datos.getarticulo(request.getParameter("articulo"));
+//datos.getarticulo(request.getParameter("articulo"));
+datos.getprueba();
 out.println("<td align=\"center\"><font face='Verdana' size='2' color='#0A0AA0'>" + (datos.valor) + "</font></td>");
 	}
 else
 	
-	out.println("<td align=\"center\"><font face='Verdana' size='2' color='#0A0AA0'><b>Telefono</b></font></td>");
+	out.println("respuesta: " + request.getParameter("password") + login.pass);
 
 
 %>

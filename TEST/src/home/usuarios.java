@@ -7,12 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.sql.ResultSet;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.jasper.tagplugins.jstl.core.Out;
 
 import home.datos;
 /**
@@ -85,7 +88,7 @@ public class usuarios extends HttpServlet {
 		datos data=new datos();
 		data.conectar();
 		Connection con = data.con;
-		String SQL = "SELECT usuario form usuarios where usuario='"+getUsuarios()+"'"; 
+		String SQL = "SELECT usuario from usuarios where usuario='EMILIO'"; 
 		Statement stmt = con.createStatement(); 
 		ResultSet rs;
 		rs=stmt.executeQuery(SQL);
@@ -95,6 +98,25 @@ public class usuarios extends HttpServlet {
 		else		
 		return true;	
 		
+	}
+	
+	public boolean usuariovalido () throws SQLException
+	{
+		datos data=new datos();
+		data.conectar();
+		Connection con = data.con;
+		String SQL = "SELECT usuario from usuarios where usuario='"+ this.getUsuarios()+"'";
+		Statement stmt = con.createStatement(); 
+		ResultSet rs;
+		rs=stmt.executeQuery(SQL);
+
+		
+		
+
+		if (rs.wasNull())
+			return false;
+		else		
+		return true;	
 	}
 
 }

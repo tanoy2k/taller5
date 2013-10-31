@@ -15,7 +15,7 @@
 <%
 usuarios.setUsuarios(request.getParameter("user"));
 usuarios.setPassword(request.getParameter("password"));
-if (usuarios.existeusuario(request.getParameter("user"))==1)
+if (usuarios.existeUsuario(request.getParameter("user")))
 	
 	{
 	out.println("Existe usuario");

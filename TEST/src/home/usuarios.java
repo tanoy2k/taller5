@@ -88,7 +88,7 @@ public class usuarios extends HttpServlet {
 		datos data=new datos();
 		data.conectar();
 		Connection con = data.con;
-		String SQL = "SELECT usuario from usuarios where usuario='EMILIO'"; 
+		String SQL = "SELECT usuario from usuarios where usuario='EMhILIO'"; 
 		Statement stmt = con.createStatement(); 
 		ResultSet rs;
 		rs=stmt.executeQuery(SQL);
@@ -110,10 +110,10 @@ public class usuarios extends HttpServlet {
 		cs.registerOutParameter(3, Types.INTEGER);
 		cs.setString("usuario", getUsuarios());
 		cs.setString("password", getPassword());
-		cs.setInt("valido", 0);
+		cs.setInt("perfil", 0);
 		cs.execute();
-		int valido=cs.getInt(3);
-		if (valido==1)
+		int perfil=cs.getInt(3);
+		if (perfil==1)
 		return true;
 		else
 			return false;

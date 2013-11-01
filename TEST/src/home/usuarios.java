@@ -102,21 +102,22 @@ public class usuarios extends HttpServlet {
 	
 	public boolean usuariovalido () throws SQLException
 	{
-		datos data=new datos();
+		CallableStatement cs=null;
+		datos data= new datos();
 		data.conectar();
 		Connection con = data.con;
-		String SQL = "SELECT usuario from usuarios where usuario='"+ this.getUsuarios()+"'";
-		Statement stmt = con.createStatement(); 
-		ResultSet rs;
-		rs=stmt.executeQuery(SQL);
-
-		
-		
-
-		if (rs.wasNull())
+		cs = con.prepareCall("{call USUARIO_VALIDO(?,?,?)}");
+		cs.registerOutParameter(3, Types.INTEGER);
+		cs.setString("usuario", getUsuarios());
+		cs.setString("password", getPassword());
+		cs.setInt("valido", 0);
+		cs.execute();
+		int valido=cs.getInt(3);
+		if (valido==1)
+		return true;
+		else
 			return false;
-		else		
-		return true;	
+				
 	}
 
 }

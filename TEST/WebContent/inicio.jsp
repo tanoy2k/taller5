@@ -11,14 +11,27 @@
 
 
 <%
+int perfil;
 HttpSession sesion=request.getSession();
-String mensaje=(String)sesion.getAttribute("msg");
-
-if (mensaje == null )
-	out.print("<p> mensaje nulo: "+  mensaje + "</p>");
+if(null == sesion.getAttribute("perfil"))
+	{
+	perfil=0;
+	}
 else
-	out.print("<p> mensaje NO nulo: "+  mensaje + "</p>");
+{
+	perfil=(Integer)sesion.getAttribute("perfil");
+}
 
+if (perfil==0 )
+{
+	out.print("Ingese sus datos");
+}
+
+else
+	{
+	out.print("usuario logueado");
+	out.println("PERFIL:"+perfil);
+	}
 
 %> 
 		<table> 

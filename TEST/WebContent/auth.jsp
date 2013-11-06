@@ -19,8 +19,27 @@
 <%
 users.setUsuarios(request.getParameter("user"));
 users.setPassword(request.getParameter("password"));
-//if (users.usuariovalido()){
+int valido=users.usuariovalido();
 
+if (valido!=0)
+{
+	HttpSession sesion=request.getSession();
+	sesion.setAttribute("perfil", valido);
+	
+}
+
+else
+{
+	System.out.println("INVALIDO");
+	HttpSession sesion=request.getSession();
+	sesion.setAttribute("perfil", valido);
+String url = "inicio.jsp";
+response.sendRedirect(url);
+}
+
+
+
+/*
 if (false){
 
 response.sendRedirect("pantalla1.jsp");
@@ -29,7 +48,6 @@ else
 {	
 
 	
-
 	HttpSession sesion=request.getSession();
 
 
@@ -40,7 +58,7 @@ else
 
 	
 	
-}
+}*/
 %>
 </body>
 </html>

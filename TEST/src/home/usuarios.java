@@ -100,7 +100,7 @@ public class usuarios extends HttpServlet {
 		
 	}
 	
-	public boolean usuariovalido () throws SQLException
+	public int usuariovalido () throws SQLException
 	{
 		CallableStatement cs=null;
 		datos data= new datos();
@@ -113,10 +113,8 @@ public class usuarios extends HttpServlet {
 		cs.setInt("perfil", 0);
 		cs.execute();
 		int perfil=cs.getInt(3);
-		if (perfil==1)
-		return true;
-		else
-			return false;
+		return perfil;
+		
 				
 	}
 

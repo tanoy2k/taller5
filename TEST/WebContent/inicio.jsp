@@ -8,7 +8,20 @@
 </head>
 <body>
 <form action="auth.jsp" method="post">
-		<table>
+
+
+<%
+HttpSession sesion=request.getSession();
+String mensaje=(String)sesion.getAttribute("msg");
+
+if (mensaje == null )
+	out.print("<p> mensaje nulo: "+  mensaje + "</p>");
+else
+	out.print("<p> mensaje NO nulo: "+  mensaje + "</p>");
+
+
+%> 
+		<table> 
 			<tr>
 				<td>Users</td>
 				<td><input name="user" /></td>

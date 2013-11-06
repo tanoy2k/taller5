@@ -19,14 +19,27 @@
 <%
 users.setUsuarios(request.getParameter("user"));
 users.setPassword(request.getParameter("password"));
-if (users.usuariovalido()){
-	System.out.println("valido");
+//if (users.usuariovalido()){
 
-String url = "menu.jsp";
-response.sendRedirect(url);
+if (false){
+
+response.sendRedirect("pantalla1.jsp");
 }
 else
-{	System.out.println("invalido");
+{	
+
+	
+
+	HttpSession sesion=request.getSession();
+
+
+	sesion.setAttribute("msg","Ingreso invàlido");
+
+	String url = "inicio.jsp";
+	response.sendRedirect(url);
+
+	
+	
 }
 %>
 </body>

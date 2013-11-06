@@ -19,11 +19,15 @@
 <%
 users.setUsuarios(request.getParameter("user"));
 users.setPassword(request.getParameter("password"));
-if (users.usuariovalido())
+if (users.usuariovalido()){
 	System.out.println("valido");
-else
-	System.out.println("invalido");
 
+String url = "menu.jsp";
+response.sendRedirect(url);
+}
+else
+{	System.out.println("invalido");
+}
 %>
 </body>
 </html>

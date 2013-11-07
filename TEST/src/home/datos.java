@@ -24,8 +24,8 @@ public class datos {
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			//String connectionUrl = "jdbc:sqlserver://localhost\\sqlexpress;"
-			String connectionUrl = "jdbc:sqlserver://200.49,156.198:1453;"
-					+ "database=BD;" + "user=java;" + "password=java";
+			String connectionUrl = "jdbc:sqlserver://200.49.156.198:1453;"
+					+ "DatabaseName=BD;" + "user=java;" + "password=java";
 			con = DriverManager.getConnection(connectionUrl);
 			System.out.println("Connected.");
 		} catch (Exception e) {

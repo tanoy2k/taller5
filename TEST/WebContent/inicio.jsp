@@ -13,6 +13,7 @@
 <%
 int perfil;
 HttpSession sesion=request.getSession();
+sesion.setMaxInactiveInterval(15);
 if(null == sesion.getAttribute("perfil"))
 	{
 	perfil=0;

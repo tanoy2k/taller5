@@ -14,7 +14,7 @@ public class datos {
 	public ResultSet rs;
 	public float valor = 0;
 	CallableStatement cs = null;
-	Connection con;
+	public Connection con;
 	public String articulo;
 	public String articulos;
 	

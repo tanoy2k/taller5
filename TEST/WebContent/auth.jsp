@@ -25,6 +25,9 @@ if (valido!=0)
 {
 	HttpSession sesion=request.getSession();
 	sesion.setAttribute("perfil", valido);
+	String url="menu.jsp";
+	response.sendRedirect(url);
+	
 	
 }
 

@@ -31,6 +31,7 @@ else
 	{
 	out.print("usuario logueado");
 	out.println("PERFIL:"+perfil);
+	response.sendRedirect("menu.jsp");
 	}
 
 %> 

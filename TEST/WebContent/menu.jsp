@@ -32,7 +32,7 @@ while (rs.next())
 	
 	
 	String pagina = 	rs.getString(1);
-	out.print("<li><a href='" + pagina + " target='contenido'>" + pagina + "</a></li>" );
+	out.print("<li><a href='" + pagina + ".jsp' target='contenido'>" + pagina + "</a></li>" );
 	
 	rs.getString(1);
 	

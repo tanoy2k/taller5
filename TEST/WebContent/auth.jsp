@@ -25,7 +25,7 @@ if (valido!=0)
 {
 	HttpSession sesion=request.getSession();
 	sesion.setAttribute("perfil", valido);
-	String url="menu.jsp";
+	String url="masterpage.jsp";
 	response.sendRedirect(url);
 	
 	
@@ -36,6 +36,7 @@ else
 	System.out.println("INVALIDO");
 	HttpSession sesion=request.getSession();
 	sesion.setAttribute("perfil", valido);
+	sesion.setAttribute("usuario", request.getParameter("user"));
 String url = "inicio.jsp";
 response.sendRedirect(url);
 }

@@ -22,12 +22,23 @@ data.conectar();
 ResultSet rs=data.rs;
 String SQL = "SELECT PAGINA FROM PAGINAS WHERE PERFIL="+perfil; 
 Statement stmt = data.con.createStatement(); 
+
 rs=stmt.executeQuery(SQL);
+
+out.print("<ul>");
 while (rs.next())
 {
 	System.out.println("hola");
 	
+	
+	String pagina = 	rs.getString(1);
+	out.print("<li><a href='" + pagina + " target='contenido'>" + pagina + "</a></li>" );
+	
+	rs.getString(1);
+	
 }
+
+out.print("</ul>");
 
 %>
 

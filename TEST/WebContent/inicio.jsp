@@ -13,7 +13,7 @@
 <%
 int perfil;
 HttpSession sesion=request.getSession();
-sesion.setMaxInactiveInterval(15);
+sesion.setMaxInactiveInterval(1);
 if(null == sesion.getAttribute("perfil"))
 	{
 	perfil=0;
@@ -32,7 +32,7 @@ else
 	{
 	out.print("usuario logueado");
 	out.println("PERFIL:"+perfil);
-	response.sendRedirect("menu.jsp");
+	response.sendRedirect("masterpage.html");
 	}
 
 %> 

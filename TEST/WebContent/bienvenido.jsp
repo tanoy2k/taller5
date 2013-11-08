@@ -4,13 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Bienvenido</title>
 </head>
 <body>
-<frameset cols="200px,*">
-  <frame src="menu.jsp" noresize="noresize">
-  <frame src="bienvenido.jsp">
-
-</frameset>
+<h1>Bienvenido <b><%HttpSession sesion=request.getSession();
+ out.print( sesion.getAttribute("usuario") ); %></b></h1>
 </body>
 </html>

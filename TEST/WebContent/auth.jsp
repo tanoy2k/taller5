@@ -25,7 +25,7 @@ if (valido!=0)
 {
 	HttpSession sesion=request.getSession();
 	sesion.setAttribute("perfil", valido);
-	String url="masterpage.jsp";
+	String url="masterpage.html";
 	response.sendRedirect(url);
 	
 	

@@ -15,9 +15,10 @@ HttpSession sesion=request.getSession();
 sesion.setMaxInactiveInterval(15);
 if(null == sesion.getAttribute("perfil"))
 	{
-	perfil=0;
+	response.sendRedirect("inicio.jsp");
 	}
-
+else
+{
 	datos data=new datos();
 	data.conectar();
 	ResultSet rs=data.rs;
@@ -36,6 +37,7 @@ if(null == sesion.getAttribute("perfil"))
 				
 	}
 	out.print("<ul>");
+}
 
 
 %>

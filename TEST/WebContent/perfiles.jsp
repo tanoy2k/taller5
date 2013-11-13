@@ -26,16 +26,13 @@ padding-top: 20px;
 <body>
 
 <div id="center">
-<form action=alta.jsp method=post>
+<form action=modiusu.jsp method=post>
 <table>
 <tr><td>Usuario</td><td><input name="user"></td></tr>
-<tr><td>Password</td><td><input type="password" name="password"></td></tr>
-<tr><td>Reitere el password</td><td><input type="password" name="password2"></td></tr>
+<tr><td>Perfil</td><td><input name="profile"></td></tr>
 </table>
 <input type="submit" />
 </form>
-<form action=inicio.jsp method=post>
-<input type="submit"  value="Volver"/>
 </body>
 <%
  // ahora con estilo!

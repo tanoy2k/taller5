@@ -25,7 +25,17 @@ import home.datos;
 public class usuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public String usuarios;
+	public String password;
+	public Integer profile; 
 	datos datos=new datos();
+	
+	public Integer getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Integer profile) {
+		this.profile = profile;
+	}	
 	
 	public String getUsuarios() {
 		return usuarios;
@@ -46,7 +56,7 @@ public class usuarios extends HttpServlet {
 		this.password = password;
 	}
 
-	public String password;
+
 	
        
     /**
@@ -88,17 +98,62 @@ public class usuarios extends HttpServlet {
 		datos data=new datos();
 		data.conectar();
 		Connection con = data.con;
-		String SQL = "SELECT usuario from usuarios where usuario='EMhILIO'"; 
+		String SQL = "SELECT count(*) from usuarios where usuario='"+  this.usuarios +"'"; 
 		Statement stmt = con.createStatement(); 
 		ResultSet rs;
 		rs=stmt.executeQuery(SQL);
 		
+		while (rs.next())
+		{
+			System.out.println("hola usuario " + rs.getInt(1));
+			
+			
+			
+		
+		
+		if (rs.getInt(1) > 0 )
+			return true;
+		else		
+			return false;	
+		}
+		return false; // Caso NUll
+	}
+	
+	public boolean guardausuario() throws SQLException
+	{
+		datos data=new datos();
+		data.conectar();
+		
+		Connection con = data.con;
+		String SQL = "INSERT INTO [BD].[dbo].[USUARIOS]([USUARIO] ,[PASSWORD] ,[PERFIL]) VALUES++'"+  this.usuarios.toUpperCase() +  "','"+ this.password.toUpperCase() + "',"+ this.profile +" )"; 
+		Statement stmt = con.createStatement(); 
+		ResultSet rs;
+		rs=stmt.executeQuery(SQL);
+		//con.close();
 		if (rs.wasNull())
 			return false;
 		else		
 		return true;	
 		
 	}
+	
+	
+	public int updateprofile() throws SQLException
+	{
+		datos data=new datos();
+		data.conectar();
+		
+		Connection con = data.con;
+		String SQL = "UPDATE [BD].[dbo].[USUARIOS] SET PERFIL = " + this.profile + " where USUARIO = '"+ this.usuarios.toUpperCase() + "';"; 
+		Statement stmt = con.createStatement(); 
+		int  resultado;
+		resultado=stmt.executeUpdate(SQL);
+		con.close();
+return resultado;	
+		
+	}
+	
+	
 	
 	public int usuariovalido () throws SQLException
 	{

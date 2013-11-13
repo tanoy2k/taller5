@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">.error{color:red;}</style>
 </head>
 <body>
 
@@ -15,27 +16,33 @@
 <%
 usuarios.setUsuarios(request.getParameter("user"));
 usuarios.setPassword(request.getParameter("password"));
-if (usuarios.existeUsuario(request.getParameter("user")))
-	
+if (usuarios.usuarios.isEmpty())
+{ 
+	out.println("<h4 class='error'>Usuario no puede ser nulo</h4>");
+	out.println("<A HREF='./crearusuario.jsp' TITLE='Volver atras'>Volver Atras</A>");
+}
+else
+{
+	if (usuarios.existeUsuario(request.getParameter("user")))	
 	{
-	out.println("Existe usuario");
-	
-	}
-		
+		out.println("<h4 class='error'>Usuario ya existente</h4>");
+		out.println("<A HREF='./crearusuario.jsp' TITLE='Volver atras'>Volver Atras</A>");
+    }
+	else
+	{
+		if ((request.getParameter("password")).equals((request.getParameter("password2"))) )
+		{
+			usuarios.guardarusuario();
+			out.println("<h4>Alta efectuada correctamente</h4>");
+			out.println("<A HREF='./inicio.jsp' TITLE='Volver atras'>Volver Atras</A>");
+		}
 		else
 		{
+			out.println("<h4 class='error'>No coinciden passwords</h4>");
+			out.println("<A HREF='./crearusuario.jsp' TITLE='Volver atras'>Volver Atras</A>");
+	   	}
+	}
+}
 
-		if ((request.getParameter("password")).equals((request.getParameter("password2"))) )
-			{
-			usuarios.guardarusuario();
-			}
-		
-			else
-			{
-			out.println("No coinciden passwords");
-			out.println("<A HREF='http://localhost:8080/TEST/crearusuario.jsp' TITLE='Volver atras'>Volver Atras</A>");
-		    
-			}
-		}
 	
 %>

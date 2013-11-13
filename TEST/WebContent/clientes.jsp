@@ -15,7 +15,7 @@ HttpSession sesion=request.getSession();
 sesion.setMaxInactiveInterval(15);
 if(null == sesion.getAttribute("perfil"))
 	{
-	response.sendRedirect("inicio.jsp");
+	response.sendRedirect("salir.jsp");
 	}
 else
 {

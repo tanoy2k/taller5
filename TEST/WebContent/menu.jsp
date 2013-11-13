@@ -3,7 +3,7 @@
     <%@ page import="home.datos" %>
      <%@ page import = "java.sql.*"%> 
      <jsp:useBean id="datos" class="home.datos" scope="application"/>
-    
+     <jsp:useBean id="usuarios" class="home.usuarios" scope="application"/>
      
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,11 +16,11 @@
 int perfil;
 HttpSession sesion=request.getSession();
 perfil=(Integer)sesion.getAttribute("perfil");
-
+usuarios.setProfile(perfil);
 datos data=new datos();
 data.conectar();
 ResultSet rs=data.rs;
-String SQL = "SELECT PAGINA FROM PAGINAS WHERE PERFIL="+perfil; 
+String SQL = "SELECT PAGINA FROM PAGINAS WHERE PERFIL="+usuarios.getProfile(); 
 Statement stmt = data.con.createStatement(); 
 
 rs=stmt.executeQuery(SQL);
@@ -32,12 +32,11 @@ while (rs.next())
 	
 	
 	String pagina = 	rs.getString(1);
-	out.print("<li><a href='" + pagina + ".jsp' target='contenido'>" + pagina + "</a></li>" );
+	out.print("<li><a href='" + pagina.toLowerCase() + ".jsp' target='contenido'>" + pagina + "</a></li>" );
 	
 	rs.getString(1);
-	
 }
-
+out.print("<li><a href='salir.jsp' target='_top'>SALIR</a></li>" );
 out.print("</ul>");
 
 %>

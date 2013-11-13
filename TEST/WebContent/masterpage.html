@@ -4,16 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<frameset cols="200px,*">
-    <frame src="menu.jsp" noresize="noresize">
-    <frame src="bienvenido.jsp">
-    <noframes>
-    <body>
-    <p>This page uses frames. The current browser you are using does not support frames.</p>
-    </body>
-    </noframes>
+<frameset rows="100px, *,20px" border=1>
+<frame name="menu" src="header.jsp" noresize="noresize">
+	<frameset cols="200px,*">
+	    <frame name="menu" src="menu.jsp" noresize="noresize">
+	    <frame name="contenido" src="bienvenido.jsp">
+	    <noframes>
+	    <body>
+	    <p>This page uses frames. The current browser you are using does not support frames.</p>
+	    </body>
+	    </noframes>
+	</frameset>
+<frame name="pie" src="pie.jsp" noresize="noresize">	
 </frameset>
-
 
 
 

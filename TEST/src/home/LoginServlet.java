@@ -58,7 +58,7 @@ public class LoginServlet extends HttpServlet {
 				response (resp,rs1.getString(1));	
 				
 				}
-				response (resp,"<A HREF='http://localhost:8080/TEST' TITLE='Volver atras'>Volver Atras</A>");	
+				response (resp,"<A HREF='./inicio.jsp' TITLE='Volver atras'>Volver Atras</A>");	
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 				
 			} 
 		else {
-			response(resp, "Invalid login");
+			response(resp, "Ingreso inválido");
 		}
 	}
 	private void response(HttpServletResponse resp, String msg)

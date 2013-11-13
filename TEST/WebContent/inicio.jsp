@@ -5,11 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+#center {
+position: absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+margin: auto;
+background: yellow;
+border: solid blue;
+height: 200px;
+width: 300px;
+padding-left:  50px;
+padding-top: 20px;
+
+}
+</style>
+
 </head>
 <body>
 <form action="auth.jsp" method="post">
 
-
+<div id="center">
 <%
 int perfil;
 HttpSession sesion=request.getSession();
@@ -25,7 +43,7 @@ else
 
 if (perfil==0 )
 {
-	out.print("Ingese sus datos");
+	out.print("<span>Por favor, ingese sus datos</span><br>");
 }
 
 else
@@ -36,29 +54,27 @@ else
 	}
 
 %> 
-		<table> 
+
+
+        <br>		
+		<table > 
 			<tr>
-				<td>Users</td>
+				<td>Usuario</td>
 				<td><input name="user" /></td>
 			</tr>
 			<tr>
-				<td>password</td>
+				<td>Contraseña</td>
 				<td><input type="password" name="password" /></td>
 			</tr>
-			<tr>
-				<td>articulo</td>
-				<td><input name="articulo" /></td>
-			</tr>
 		</table>
-		<input type="submit" />
+		<input type="submit" Value="Ingresar"/>
 	</form>
 	
 	
 	<form action=crearusuario.jsp>
-	<td>
-	</td>
 	<input type="submit" value="Crear Usuario"/>
 	</form>
-
+  
+</div>
 </body>
 </html>

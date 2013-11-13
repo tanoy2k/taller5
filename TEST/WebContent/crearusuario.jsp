@@ -13,7 +13,7 @@ left:0;
 right:0;
 bottom:0;
 margin: auto;
-background: yellow;
+background: #ddd;
 border: solid blue;
 height: 200px;
 width: 300px;

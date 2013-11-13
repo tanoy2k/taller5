@@ -12,7 +12,7 @@
 
 #box{
 position:absolute;
-background: yellow;
+background: #ddd;
 border: solid blue;
 height: 200px;
 width: 500px;
@@ -25,7 +25,7 @@ padding-top: 20px;
 </head>
 <body>
 <div id="box">
-<h1 class="center" style="position:absolute;left:25%;top:10px">Bienvenido <b><%HttpSession sesion=request.getSession();
+<h1 class="center" style="color:blue;position:absolute;left:25%;top:10px">Bienvenido <b><%HttpSession sesion=request.getSession();
 if (users.getUsuarios() == null)
 	response.sendRedirect("inicio.jsp");
 else	

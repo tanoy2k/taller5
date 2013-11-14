@@ -23,7 +23,7 @@ usuarios.setProfile(perfil);
 datos data=new datos();
 data.conectar();
 ResultSet rs=data.rs;
-String SQL = "SELECT PAGINA FROM PAGINAS WHERE PERFIL="+usuarios.getProfile(); 
+String SQL = "SELECT PAGINA,DESCRIPCION FROM PAGINAS WHERE PERFIL="+usuarios.getProfile(); 
 Statement stmt = data.con.createStatement(); 
 
 rs=stmt.executeQuery(SQL);
@@ -35,7 +35,8 @@ while (rs.next())
 	
 	
 	String pagina = 	rs.getString(1);
-	out.print("<li><a href='" + pagina.toLowerCase() + ".jsp' target='contenido'>" + pagina + "</a></li>" );
+	String descripcion = 	rs.getString(2);
+	out.print("<li><a href='" + pagina.toLowerCase() + ".jsp' target='contenido'>" + descripcion + "</a></li>" );
 	
 	rs.getString(1);
 }

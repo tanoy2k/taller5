@@ -10,22 +10,21 @@
 <title>Bienvenido</title>
 <style type="text/css">
 
-#box{
-position:absolute;
-background: #ddd;
-border: solid blue;
-height: 200px;
-width: 500px;
-margin-left:20%;
-padding-left:  50px;
-padding-top: 20px;
-
-}
+h1 {
+   font-size: 35px; 
+   color: #445668; 
+   text-transform: uppercase;
+   text-align: center; 
+   margin: 0 0 35px 0; 
+   text-shadow: 0px 1px 0px #f2f2f2;
+   }
 </style>
+
 </head>
 <body>
 <div id="box">
-<h1 class="center" style="color:blue;position:absolute;left:25%;top:10px">Bienvenido <b><%HttpSession sesion=request.getSession();
+<br>
+<h1 class="center" style="color:black;text-transform:uppercase;position:absolute;left:25%;top:80px">Bienvenido/a <b><%HttpSession sesion=request.getSession();
 if (users.getUsuarios() == null)
 	response.sendRedirect("inicio.jsp");
 else	

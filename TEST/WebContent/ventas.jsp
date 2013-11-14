@@ -23,7 +23,7 @@ else
 	datos data=new datos();
 	data.conectar();
 	ResultSet rs=data.rs;
-	String SQL = "SELECT * FROM CLIENTES";
+	String SQL = "SELECT * FROM VENTAS";
 	Statement stmt = data.con.createStatement(); 
 	rs=stmt.executeQuery(SQL);
 	out.print("<ul>");

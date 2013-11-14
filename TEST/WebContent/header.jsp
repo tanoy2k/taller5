@@ -31,13 +31,15 @@ function mueveReloj(){
 	setTimeout("mueveReloj()",1000);
 }
 </script>
-
+<style type="text/css">
+body{ background-color: #eee;}
+</style>
 
 </head>
 <body onload="mueveReloj()">
-<a href="bienvenido.jsp" target="contenido"><img alt="logo_irso" src="./img/logoirso.gif" syle="float:left;position:relative;"></a>
+<a href="bienvenido.jsp" target="contenido" style="position:absolute;left:25px" ><img alt="logo_irso" src="./img/logoirso.gif" ></a>
 <div style="position:absolute;left:35%;top:10px"><h1 style="color:darkblue">Trabajo Práctico - Taller 5</h1></div>
-<div style="position:absolute;top:20px;right:40px" >
+<div style="position:absolute;top:30px;right:40px" >
 <form  name="form_reloj">
 <input type="text" name="reloj" size="30" style="background-color : Black; color : White; font-family : Verdana, Arial, Helvetica; font-size : 8pt; text-align : center;" onfocus="window.document.form_reloj.reloj.blur()">
 </form>

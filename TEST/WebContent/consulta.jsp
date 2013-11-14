@@ -23,7 +23,9 @@ else
 	datos data=new datos();
 	data.conectar();
 	ResultSet rs=data.rs;
-	String SQL = "SELECT * FROM CLIENTES";
+	String table =  request.getParameter("table");
+	out.print(table);
+	String SQL = "SELECT * FROM " + table;
 	Statement stmt = data.con.createStatement(); 
 	rs=stmt.executeQuery(SQL);
 	out.print("<ul>");

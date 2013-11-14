@@ -5,6 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<style type="text/css">
+body{ background-color: #eee;overflow:hidden}
+   span {
+   font-size:10px;
+   font-family: sans-serif;
+   text-transform: uppercase;
+   }
+</style>
 </head>
 <body>
 <span style="position:absolute">Profesor: Rodolfo Perera</span><span style="position:absolute;top:8px;right:40px">Alumnos: D'Arruda, Patricia;  D'Orio, Emilio;  Italiano, Fabio </span>

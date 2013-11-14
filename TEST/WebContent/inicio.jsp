@@ -6,28 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <style type="text/css">
-#center {
-position: absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-margin: auto;
-background: #ddd;
-border: solid blue;
-height: 200px;
-width: 300px;
-padding-left:  50px;
-padding-top: 20px;
 
-}
 </style>
 
+
+<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 </head>
 <body>
-<form action="auth.jsp" method="post">
 
 <div id="center">
+
 <%
 int perfil;
 HttpSession sesion=request.getSession();
@@ -43,7 +31,7 @@ else
 
 if (perfil==0 )
 {
-	out.print("<span>Por favor, ingese sus datos</span><br>");
+	out.print("<h6>Por favor, ingese sus datos</h6>");
 }
 
 else
@@ -56,24 +44,34 @@ else
 %> 
 
 
+		<form action=auth.jsp>
         <br>		
 		<table > 
 			<tr>
-				<td>Usuario</td>
-				<td><input name="user" /></td>
+				<td align=left><label>Usuario</label></td>
+				<td align=right><input name="user" /></td>
 			</tr>
 			<tr>
-				<td>Contraseña</td>
-				<td><input type="password" name="password" /></td>
+				<td align=left><label>Contraseña</label></td>
+				<td align=right><input type="password" name="password" /></td>
 			</tr>
 		</table>
-		<input type="submit" Value="Ingresar"/>
-	</form>
+		<br>
+		<table style="width:500px">	
+			<tr>
+				<td style="width:50%">
+						<input type="submit" Value="Ingresar"/>
+					</form>									
+				</td>
+				<td>
+					<form action=crearusuario.jsp>
+						<input type="submit" value="Crear Usuario"/>
+					</form>				
+				</td>
+			</tr> 
+		</table>
 	
 	
-	<form action=crearusuario.jsp>
-	<input type="submit" value="Crear Usuario"/>
-	</form>
   
 </div>
 </body>

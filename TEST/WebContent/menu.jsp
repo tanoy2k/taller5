@@ -10,6 +10,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>MENU DE APLICACION</title>
+<style type="text/css">
+body{ background-color: #ddd;}
+</style>
 </head>
 <body>
 <%

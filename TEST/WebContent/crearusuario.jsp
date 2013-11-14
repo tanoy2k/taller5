@@ -6,36 +6,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Creacion de nuevo usuario</title>
 <style type="text/css">
-#center {
-position: absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-margin: auto;
-background: #ddd;
-border: solid blue;
-height: 200px;
-width: 300px;
-padding-left:  50px;
-padding-top: 20px;
 
 }
 </style>
+
+<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 </head>
 <body>
 
 <div id="center">
 <form action=alta.jsp method=post>
 <table>
-<tr><td>Usuario</td><td><input name="user"></td></tr>
-<tr><td>Password</td><td><input type="password" name="password"></td></tr>
-<tr><td>Reitere el password</td><td><input type="password" name="password2"></td></tr>
+<tr><td><label>Usuario</label></td><td><input name="user"></td></tr>
+<tr><td><label>Password</label></td><td><input type="password" name="password"></td></tr>
+<tr><td><label>Reitere el password</label></td><td><input type="password" name="password2"></td></tr>
 </table>
-<input type="submit" />
-</form>
-<form action=inicio.jsp method=post>
-<input type="submit"  value="Volver"/>
+<table style="width:500px">	
+	<tr>
+		<td style="width:50%">
+			<input type="submit" value="Crear Usuario"/>
+			</form>
+		</td>
+		<td>
+			<form action=inicio.jsp method=post>
+				<input type="submit"  value="Volver"/>
+			</form>				
+		</td>
+	</tr> 
+</table>
+
+
+
 </body>
 <%
  // ahora con estilo!

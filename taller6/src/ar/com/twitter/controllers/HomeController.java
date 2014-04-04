@@ -20,4 +20,10 @@ public class HomeController {
 	public ModelAndView homejson(HttpServletResponse response) {
 		return new ModelAndView("homejson");
 	}	
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET, headers = "Accept=*/*")
+	public ModelAndView login(HttpServletResponse response) {
+		return new ModelAndView("login");
+	}		
+	
 }

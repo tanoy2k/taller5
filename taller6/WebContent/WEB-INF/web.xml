@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- Declaracion del servlet de spring controller -->
+	<servlet>
+		<servlet-name>application</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+
+	<!-- Mapping del servlet de spring controller, según el <url-pattern> todos 
+		las URLs que terminen en .htm serán afectadas por este controller -->
+	<servlet-mapping>
+		<servlet-name>application</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Parámetro contextual(A nivel de aplicación) que define la ruta física 
+		del contenedor de beans -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+		/WEB-INF/application-context.xml
+		</param-value>
+	</context-param>
+
+	<!-- Archivos de bienvenida -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- Página de error, indicando un acceso denegado. -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/sinacceso.jsp</location>
+	</error-page>
+
+</web-app>

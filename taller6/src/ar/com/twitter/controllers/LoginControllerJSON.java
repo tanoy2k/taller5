@@ -1,5 +1,6 @@
 package ar.com.twitter.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -22,10 +23,10 @@ public class LoginControllerJSON extends AbstractJsonController {
 
 	
 	@RequestMapping(value = "/authlogin{usuario}", method = RequestMethod.GET, headers = "Accept=*/*")
-	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) {
+	public @ResponseBody void authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		super.setHeaders(response);
 		String  miUsuario = req.getParameter("usuario");
-		Collection<Tweet> tweets = new ArrayList<Tweet>();
+		/*Collection<Tweet> tweets = new ArrayList<Tweet>();
 		Tweet tweet = new Tweet();
 		tweet.setAutor(miUsuario);
 		tweet.setFecha(new Date());
@@ -36,7 +37,18 @@ public class LoginControllerJSON extends AbstractJsonController {
 		tweet2.setMensaje("soy otro tweet");
 		tweets.add(tweet);
 		tweets.add(tweet2);
-		return new Gson().toJson(tweets);
+		*/
+		if (miUsuario.equals("emilio")){
+			response.sendRedirect("http://www.ole.com.ar");
+		} else { 
+			response.sendRedirect("http://www.clarin.com.ar");
+		}
+		
+		//return new Gson().toJson(tweets);
+		/*
+		if (miUsuario.equals("emilio")){
+			return "acceso ok"; 
+		}*/
 	}
 	
 	

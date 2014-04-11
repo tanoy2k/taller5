@@ -10,9 +10,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
+	@RequestMapping(value = "/logintest", method = RequestMethod.GET, headers = "Accept=*/*")
+	public ModelAndView logintest(HttpServletResponse response) {
+		return new ModelAndView("logintest");
+	}
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET, headers = "Accept=*/*")
 	public ModelAndView login(HttpServletResponse response) {
 		return new ModelAndView("login");
-	}		
+	}	
+	
+
 	
 }

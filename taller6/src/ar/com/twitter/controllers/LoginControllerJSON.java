@@ -23,7 +23,7 @@ public class LoginControllerJSON extends AbstractJsonController {
 
 	
 	@RequestMapping(value = "/authlogin{usuario}", method = RequestMethod.GET, headers = "Accept=*/*")
-	public @ResponseBody void authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		super.setHeaders(response);
 		String  miUsuario = req.getParameter("usuario");
 		/*Collection<Tweet> tweets = new ArrayList<Tweet>();
@@ -38,11 +38,13 @@ public class LoginControllerJSON extends AbstractJsonController {
 		tweets.add(tweet);
 		tweets.add(tweet2);
 		*/
+		String url = "#";
 		if (miUsuario.equals("emilio")){
-			response.sendRedirect("http://www.ole.com.ar");
+			url = "http://www.ole.com.ar";//response.sendRedirect("http://www.ole.com.ar");
 		} else { 
-			response.sendRedirect("http://www.clarin.com.ar");
+			url = "http://www.clarin.com.ar";//response.sendRedirect("http://www.clarin.com.ar");
 		}
+		return url;
 		
 		//return new Gson().toJson(tweets);
 		/*

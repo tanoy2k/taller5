@@ -3,12 +3,19 @@ package ar.com.twitter.model;
 import java.util.Date;
 
 public class usuario {
+	private String usuario = "emilio";
 	private String nombre;
 	private String apellido;
 	private int DNI;
 	private String password;
 	public String getNombre() {
 		return nombre;
+	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

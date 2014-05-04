@@ -1,4 +1,7 @@
 package ar.com.twitter.controllers;
+import ar.com.twitter.model.*;
+
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +28,9 @@ public class LoginControllerJSON extends AbstractJsonController {
 	@RequestMapping(value = "/authlogin{usuario}", method = RequestMethod.GET, headers = "Accept=*/*")
 	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException {
 		super.setHeaders(response);
+		
+		usuario usuarioDB = new usuario();
+		
 		String  miUsuario = req.getParameter("usuario");
 		/*Collection<Tweet> tweets = new ArrayList<Tweet>();
 		Tweet tweet = new Tweet();
@@ -39,7 +45,7 @@ public class LoginControllerJSON extends AbstractJsonController {
 		tweets.add(tweet2);
 		*/
 		String url = "#";
-		if (miUsuario.equals("emilio")){
+		if (miUsuario.equals(usuarioDB.getUsuario())){
 			url = "http://www.ole.com.ar";//response.sendRedirect("http://www.ole.com.ar");
 		} else { 
 			url = "http://www.clarin.com.ar";//response.sendRedirect("http://www.clarin.com.ar");

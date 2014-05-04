@@ -8,7 +8,8 @@ var iniciar = function(){
 	
 	$("#btnIngresar").on("click",function(){
 		console.log("anda el coso, probando el get");
-		$.get('./authlogin.htm?usuario=emilio',function(data){
+		var miUsuario = $("#loginUsuario").val();
+		$.get('./authlogin.htm?usuario=' + miUsuario,function(data){
 			window.document.location.href = data;})});
 	var inputs = $("input");
 	var obj = $.map(inputs, function(n, i)

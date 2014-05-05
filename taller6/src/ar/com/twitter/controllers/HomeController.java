@@ -16,8 +16,8 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value = "/homejson", method = RequestMethod.GET, headers = "Accept=*/*")
-	public ModelAndView homejson(HttpServletResponse response) {
+	@RequestMapping(value = "/homejson2", method = RequestMethod.GET, headers = "Accept=*/*")
+	public ModelAndView homejson2(HttpServletResponse response) {
 		return new ModelAndView("homejson");
 	}	
 		

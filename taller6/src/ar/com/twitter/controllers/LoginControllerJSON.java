@@ -1,56 +1,96 @@
 package ar.com.twitter.controllers;
-import ar.com.twitter.model.*;
-
-
+//import ar.com.twitter.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ar.com.twitter.model.Tweet;
-
 import com.google.gson.Gson;
+
+import ar.com.twitter.dao.login;
+
+//import com.google.gson.Gson;
 
 @Controller
 public class LoginControllerJSON extends AbstractJsonController {
 
 	
+	
+	
+	
 	@RequestMapping(value = "/authlogin{usuario}", method = RequestMethod.GET, headers = "Accept=*/*")
-	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException {
+	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException, SQLException {
 		super.setHeaders(response);
+	
 		
-		usuario usuarioDB = new usuario();
+//		datos loginDAO= new datos();
+//		try {
+//			loginDAO.getclientes();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			response.sendRedirect("http://www.fabio.com.ar");
+//		}
 		
-		String  miUsuario = req.getParameter("usuario");
-		/*Collection<Tweet> tweets = new ArrayList<Tweet>();
-		Tweet tweet = new Tweet();
-		tweet.setAutor(miUsuario);
-		tweet.setFecha(new Date());
-		tweet.setMensaje("soy un tweet");
-		Tweet tweet2 = new Tweet();
-		tweet2.setAutor("Sergio");
-		tweet2.setFecha(new Date());
-		tweet2.setMensaje("soy otro tweet");
-		tweets.add(tweet);
-		tweets.add(tweet2);
-		*/
-		String url = "#";
-		if (miUsuario.equals(usuarioDB.getUsuario())){
-			url = "http://www.ole.com.ar";//response.sendRedirect("http://www.ole.com.ar");
-		} else { 
-			url = "http://www.clarin.com.ar";//response.sendRedirect("http://www.clarin.com.ar");
+		login login = new login();
+		
+		// le paso el parametro usuario, a la propiedad usuario del objeto login
+		login.setUsuario(req.getParameter("usuario"));
+		
+		// le paso el parametro usuario, a la propiedad password del objeto login
+		login.setPassword(req.getParameter("password"));
+		
+		// EVALUA SI PERMITE EL INGRESO
+		login.authLogin();
+		
+
+		
+		if (login.getRespuesta() == "OK"){
+			System.out.println("LOGIN OK NUEVA ANOTaCION");
+			
+		}else{
+			System.out.println("LOGIN ERROR NUEVA ANOTOACION");
+
 		}
-		return url;
+		
+		//return "http://www.google.com.ar";
+		//return new Gson().toJson(login);
+		
+		// armo el json del orto a mano,
+		String jsonArtesano = "{respuesta:" + login.respuesta + ";redirect:" + login.redirect + "}";
+		
+		return jsonArtesano;
+		
+//		
+//		usuario usuarioDB = new usuario();
+//		
+//		String  miUsuario = req.getParameter("usuario");
+//		/*Collection<Tweet> tweets = new ArrayList<Tweet>();
+//		Tweet tweet = new Tweet();
+//		tweet.setAutor(miUsuario);
+//		tweet.setFecha(new Date());
+//		tweet.setMensaje("soy un tweet");
+//		Tweet tweet2 = new Tweet();
+//		tweet2.setAutor("Sergio");
+//		tweet2.setFecha(new Date());
+//		tweet2.setMensaje("soy otro tweet");
+//		tweets.add(tweet);
+//		tweets.add(tweet2);
+//		*/
+//		String url = "#";
+//		if (miUsuario.equals(usuarioDB.getUsuario())){
+//			url = "http://www.ole.com.ar";//response.sendRedirect("http://www.ole.com.ar");
+//		} else { 
+//			url = "http://www.google.com.";//response.sendRedirect("http://www.clarin.com.ar");
+//		}
+//		return url;
 		
 		//return new Gson().toJson(tweets);
 		/*
@@ -62,23 +102,7 @@ public class LoginControllerJSON extends AbstractJsonController {
 	
 	
 	
-	@RequestMapping(value = "/authlogin/{usuario}", method = RequestMethod.GET, headers = "Accept=*/*")
-	public @ResponseBody String authloginResponse(@PathVariable String usuario, HttpServletResponse response) {
-		super.setHeaders(response);
-		
-		Collection<Tweet> tweets = new ArrayList<Tweet>();
-		Tweet tweet = new Tweet();
-		tweet.setAutor(usuario);
-		tweet.setFecha(new Date());
-		tweet.setMensaje("soy un tweet");
-		Tweet tweet2 = new Tweet();
-		tweet2.setAutor("Sergio");
-		tweet2.setFecha(new Date());
-		tweet2.setMensaje("soy otro tweet");
-		tweets.add(tweet);
-		tweets.add(tweet2);
-		return new Gson().toJson(tweets);
-	}	
+
 	
 
 }

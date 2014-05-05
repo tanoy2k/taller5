@@ -18,7 +18,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET, headers = "Accept=*/*")
 	public ModelAndView login(HttpServletResponse response) {
-		return new ModelAndView("login");
+		return new ModelAndView("logintest");
 	}	
 	
 

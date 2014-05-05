@@ -7,17 +7,28 @@
 var iniciar = function(){
 	
 	$("#btnIngresar").on("click",function(){
-		console.log("anda el coso, probando el get");
+		console.log(" OJO CON EL CONSOLE.LOG, NO TODOS LOS BROWSERS LO ACEPTAN...LO USAMOS SOLO POR DEBUG");
+		// TOMAMOS EL VALOR INGRESADO EN EL FORM POR EL USUARIO, USANDO JQUERY
 		var miUsuario = $("#loginUsuario").val();
-		$.get('./authlogin.htm?usuario=' + miUsuario,function(data){
-			window.document.location.href = data;})});
-	var inputs = $("input");
-	var obj = $.map(inputs, function(n, i)
-	{
-	    var o = {};
-	    o[n.name] = $(n).val();
-	    return o;
-	});
+		var miPassword = $("#loginPassword").val();
+		var queryString = './authlogin.htm?usuario=' + miUsuario + '&password=' + miPassword;
+		// ACA SOLAMENTE MANDAMOS USR Y PSW A LA VIEJA ESCUELA
+		$.get( queryString,function(data){
+			console.log(JSON.stringify(data));
+			if (data.respuesta == "OK"){
+				window.document.location.href = data.redirect;
+			}else{
+				alert("ingreso incorrecto: ");
+			}
+			});
+		});
+//	var inputs = $("input");
+//	var obj = $.map(inputs, function(n, i)
+//	{
+//	    var o = {};
+//	    o[n.name] = $(n).val();
+//	    return o;
+//	});
 	
 };
 

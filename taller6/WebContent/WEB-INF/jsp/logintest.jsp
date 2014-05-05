@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">.test{color:#f00;}</style>
 <script src="./jquery-1.10.2.js"></script> 
-<script src="./logintest.js"></script> 
+<script src="./logintest.js?5"></script> 
 <script type="text/javascript">
 //   jQuery.getJSON( "http://localhost:8080/twitter/test.htm",success(data, textStatus, jqXHR)] )
 

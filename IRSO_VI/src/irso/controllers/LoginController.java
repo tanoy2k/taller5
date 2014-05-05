@@ -1,5 +1,14 @@
 package irso.controllers;
 
+import java.sql.SQLException;
+
+import irso.dao.usuarios_dao;
+
+
+
+
+
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -12,7 +21,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class LoginController {
 	@RequestMapping(value = "/pepe", method = RequestMethod.GET, headers = "Accept=*/*")
-	public ModelAndView logintest(HttpServletResponse response) {
+	
+	
+	
+	public ModelAndView logintest(HttpServletResponse response) throws SQLException {
+		usuarios_dao datos = new usuarios_dao();
+		String a=datos.getclientes();
+		System.out.println(a);
 		return new ModelAndView("home");
 
 }

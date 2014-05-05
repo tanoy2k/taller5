@@ -15,6 +15,12 @@ public class HomeController {
 		return new ModelAndView("home");
 	}
 	
+	@RequestMapping(value = "/inicio", method = RequestMethod.GET, headers = "Accept=*/*")
+	public ModelAndView inicio(HttpServletResponse response) {
+		return new ModelAndView("inicio");
+	}
+	
+	
 	
 	@RequestMapping(value = "/homejson2", method = RequestMethod.GET, headers = "Accept=*/*")
 	public ModelAndView homejson2(HttpServletResponse response) {

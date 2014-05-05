@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import ar.com.twitter.dao.login;
+import ar.com.twitter.model.sesion;
 
 //import com.google.gson.Gson;
 
@@ -61,12 +62,19 @@ public class LoginControllerJSON extends AbstractJsonController {
 		}
 		
 		//return "http://www.google.com.ar";
+		sesion sesion = new sesion();
+		sesion.setUsusario("lalala");
+		sesion.evaluarLogin(login.respuesta); 
+		Gson gson = new Gson(); 
+		String json = gson.toJson(sesion); 
+		return json;
+		
 		//return new Gson().toJson(login);
 		
-		// armo el json del orto a mano,
-		String jsonArtesano = "{respuesta:" + login.respuesta + ";redirect:" + login.redirect + "}";
-		
-		return jsonArtesano;
+		// armo el json a mano,
+//		String jsonArtesano = "{'respuesta':'" + login.respuesta + "','redirect:" + login.redirect + "}";
+//		
+//		return jsonArtesano;
 		
 //		
 //		usuario usuarioDB = new usuario();

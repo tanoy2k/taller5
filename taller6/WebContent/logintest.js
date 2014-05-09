@@ -22,7 +22,7 @@ var iniciar = function(){
 				alert("ingreso incorrecto: ");
 			}
 			});
-		});
+		}); //
 
 
 

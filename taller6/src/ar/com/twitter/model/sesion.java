@@ -3,7 +3,7 @@ package ar.com.twitter.model;
 public class sesion {
 /**
 	 * @author lucia
-	 *
+	 * j
 	 */
 public String ususario;
 public String redirect;

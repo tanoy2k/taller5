@@ -11,9 +11,11 @@
 </head>
 <div>
 <br><button id="btnMaterias">Materias</button>
+<br><button id="btnMaterias2">Materias2</button>
 </div>
-<div id="lista" name="lista">
+<div id="lista" name="lista" style="margin-left: 100px;float">
 </div>
+<div id="lista2" name="lista2"></div>
 <body>
 <h1>hola</h1><div id="indicator"></div><div id="twitts"></div>
 </body>

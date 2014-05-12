@@ -18,7 +18,7 @@ public class MateriasDAO {
 	public ArrayList getMaterias() throws SQLException {
 		datos acceso= new datos();
 		acceso.conectar();
-		String SQL = "SELECT articulo,descripcion,preciounit from articulos";  
+		String SQL = "SELECT articulo,descripcion,preciounit from articulos order by articulo";  
 		Statement stmt = acceso.con.createStatement(); 
 		rs = stmt.executeQuery(SQL);
 		ArrayList <materias> Materias=new ArrayList<materias>();

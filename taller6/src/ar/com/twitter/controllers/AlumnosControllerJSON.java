@@ -37,7 +37,7 @@ public class AlumnosControllerJSON extends AbstractJsonController {
 	public @ResponseBody String obtenerAlumnosController( HttpServletResponse response) throws IOException, SQLException {
 	
 		super.setHeaders(response);
-		System.out.println("AlumnosJSON/alumnos/*:  " );
+		System.out.println("AlumnosControllerJSON/alumnos/*:  " );
 		Collection<Alumno> Alumnos;
 		AlumnosDao alumno = new AlumnosDao();
 		Alumnos = alumno.obtenerAlumnos(); // retorna todos los lumnos

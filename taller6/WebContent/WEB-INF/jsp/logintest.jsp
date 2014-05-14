@@ -6,8 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <style type="text/css">.test{color:#f00;}</style>
-<script src="./jquery-1.10.2.js"></script> 
-<script src="./logintest.js?5"></script> 
+
+<script  src="./jquery-1.10.2.js"></script> 
+<script  src="./logintest.js "></script> 
 <script type="text/javascript">
 //   jQuery.getJSON( "http://localhost:8080/twitter/test.htm",success(data, textStatus, jqXHR)] )
 

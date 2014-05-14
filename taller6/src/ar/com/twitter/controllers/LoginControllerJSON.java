@@ -19,6 +19,15 @@ import ar.com.twitter.model.sesion;
 
 //import com.google.gson.Gson;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 @Controller
 public class LoginControllerJSON extends AbstractJsonController {
 
@@ -30,7 +39,6 @@ public class LoginControllerJSON extends AbstractJsonController {
 	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException, SQLException {
 		super.setHeaders(response);
 	
-		
 //		datos loginDAO= new datos();
 //		try {
 //			loginDAO.getclientes();
@@ -54,7 +62,7 @@ public class LoginControllerJSON extends AbstractJsonController {
 
 		
 		if (login.getRespuesta() == "OK"){
-			System.out.println("LOGIN OK NUEVA ANOTaCION");
+			System.out.println("LOGIN OK NUEVA ANOTaCION" );
 			
 		}else{
 			System.out.println("LOGIN ERROR NUEVA ANOTOACION");

@@ -11,9 +11,9 @@ public class MateriasController {
 
 	@RequestMapping(value = "/materias", method = RequestMethod.GET, headers = "Accept=*/*")
 	public ModelAndView materias(HttpServletResponse response) {
+		
 		return new ModelAndView("materias");
 	}
 	
-	
-	
+		
 }

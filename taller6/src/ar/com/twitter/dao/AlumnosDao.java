@@ -2,12 +2,9 @@ package ar.com.twitter.dao;
 
 import java.sql.ResultSet;
 
-import ar.com.twitter.model.*;
-
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AlumnosDao {
 

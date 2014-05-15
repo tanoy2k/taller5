@@ -15,18 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import ar.com.twitter.dao.login;
-import ar.com.twitter.model.sesion;
+import ar.com.twitter.model.Session;
 
 //import com.google.gson.Gson;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginControllerJSON extends AbstractJsonController {
@@ -70,8 +62,8 @@ public class LoginControllerJSON extends AbstractJsonController {
 		}
 		
 		//return "http://www.google.com.ar";
-		sesion sesion = new sesion();
-		sesion.setUsusario("lalala");
+		Session sesion = new Session();
+		sesion.setUsusario("saraza");
 		sesion.evaluarLogin(login.respuesta); 
 		Gson gson = new Gson(); 
 		String json = gson.toJson(sesion); 

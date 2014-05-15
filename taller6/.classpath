@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="WebContent/WEB-INF"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="WebContent/JS"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
@@ -14,11 +14,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="WebContent/alumnos.js"/>
-	<classpathentry kind="lib" path="WebContent/materias.js"/>
-	<classpathentry kind="lib" path="WebContent/jquery-1.10.2.js"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/jsp/alumnos.jsp"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/jsp/logintest.jsp"/>
-	<classpathentry kind="lib" path="WebContent/logintestjs.js"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

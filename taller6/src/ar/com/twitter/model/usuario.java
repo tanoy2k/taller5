@@ -1,7 +1,5 @@
 package ar.com.twitter.model;
 
-import java.util.Date;
-
 public class usuario {
 	private String usuario = "emilio";
 	private String nombre;

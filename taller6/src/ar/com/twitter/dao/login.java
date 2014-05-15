@@ -36,7 +36,7 @@ public class login {
 		 rs = stmt.executeQuery(SQL);
 		 
 		 // SOLO PARA DEBUG EN EL CATALINA.OUT:
-		 System.out.print("<ul v2>");
+		 System.out.print("<ul v2 voy al main?>");
 			while (rs.next())
 			{
 				System.out.println(rs.getString(1));
@@ -44,7 +44,7 @@ public class login {
 				// TODO: nueva sesion, paso datos al objeto SESION
 				
 				this.respuesta = "OK";
-				this.redirect = "./inicio";
+				this.redirect = "./main";
 			}
 			System.out.print("<ul>");
 			

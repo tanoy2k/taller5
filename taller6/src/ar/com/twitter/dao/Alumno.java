@@ -3,11 +3,6 @@
  */
 package ar.com.twitter.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ar.com.twitter.model.materias;
-
 /**
  * @author lucia
  *

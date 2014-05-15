@@ -1,15 +1,15 @@
 package ar.com.twitter.model;
 
-public class sesion {
+public class Session { // lo pasamos a inglés para no herir sensibilidades
 /**
 	 * @author lucia
 	 * j
 	 */
-public String ususario;
-public String redirect;
-public String hash;
-public String dateTime;
-public Boolean sesionActiva = false;
+private String ususario; // estaba public, feo eso!
+private String redirect;
+private String hash;
+private String dateTime;
+private Boolean sesionActiva = false;
 public Boolean getSesionActiva() {
 	return sesionActiva;
 }

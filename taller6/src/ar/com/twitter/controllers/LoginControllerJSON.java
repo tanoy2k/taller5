@@ -31,15 +31,6 @@ public class LoginControllerJSON extends AbstractJsonController {
 	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException, SQLException {
 		super.setHeaders(response);
 	
-//		datos loginDAO= new datos();
-//		try {
-//			loginDAO.getclientes();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			response.sendRedirect("http://www.fabio.com.ar");
-//		}
-		
 		LoginDao login = new LoginDao();
 		
 		// le paso el parametro usuario, a la propiedad usuario del objeto login
@@ -51,7 +42,6 @@ public class LoginControllerJSON extends AbstractJsonController {
 		// EVALUA SI PERMITE EL INGRESO
 		login.authLogin();
 		
-
 		
 		if (login.getRespuesta() == "OK"){
 			System.out.println("LOGIN OK NUEVA ANOTaCION" );
@@ -62,12 +52,13 @@ public class LoginControllerJSON extends AbstractJsonController {
 		}
 		
 		//return "http://www.google.com.ar";
-		Session sesion = new Session();
+		Session sesion = Session.getInstance();
 		sesion.setUsusario(login.getUsuario());
 		sesion.evaluarLogin(login.getRespuesta()); 
 		Gson gson = new Gson(); 
 		String json = gson.toJson(sesion); 
-		return json;
+		System.out.println("LoginControllerJSON.JSON: " + json);
+ 		return json;
 		
 		//return new Gson().toJson(login);
 		

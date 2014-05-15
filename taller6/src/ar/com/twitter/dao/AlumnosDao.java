@@ -1,10 +1,11 @@
 package ar.com.twitter.dao;
 
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import ar.com.twitter.model.Alumno;
 
 public class AlumnosDao {
 

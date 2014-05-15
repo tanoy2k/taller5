@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ar.com.twitter.dao;
+package ar.com.twitter.model;
 
 /**
  * @author lucia

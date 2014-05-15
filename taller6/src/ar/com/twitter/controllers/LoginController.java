@@ -1,6 +1,5 @@
 package ar.com.twitter.controllers;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -23,26 +22,6 @@ public class LoginController {
 //		return new ModelAndView("main");
 //	}	
 	
-	
-	
-	@RequestMapping(value = "/home{hash}", method = RequestMethod.GET, headers = "Accept=*/*")
-	public ModelAndView home(HttpServletResponse response, HttpServletRequest request) {
-		// mi controler amigo, te vigilantea, si estas en la lista te deja pasar, sino te quedar arafue!
-		//String modelAndViewRetorno = "logintest";
-//		Session miSesion = new Session();
-		System.out.println("LoginController: Session.new()" + request.getParameter("hash") );
-//		if (hashId == "1"){
-//			System.out.println("Sesion ok, hago M&V al main");
-//			modelAndViewRetorno = "inicio";
-//		}else{
-//			System.out.println("Sesion fail, hago M&V al login");
-//			modelAndViewRetorno = "logintest";	
-//		};
-		//return new ModelAndView(modelAndViewRetorno);
-		
-		return new ModelAndView("home");
-		
-	}	
 	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET, headers = "Accept=*/*")

@@ -9,22 +9,25 @@ private String ususario; // estaba public, feo eso!
 private String redirect;
 private String hash;
 private String dateTime;
-private Boolean sesionActiva = false;
-public Boolean getSesionActiva() {
+private Integer sesionActiva;
+
+
+public Integer getSesionActiva() {
+	//System.out.println(this.sesionActiva);
 	return sesionActiva;
 }
 
 public void evaluarLogin(String loginRespuesta){
 	if (loginRespuesta.equals("OK")){
-		this.setSesionActiva(true);
-		this.setRedirect("./inicio.htm");
+		this.setSesionActiva(1);
+		this.setRedirect("./home.htm?1");
 	} else {
-		this.setSesionActiva(false);
+		this.setSesionActiva(0);
 		this.setRedirect("#");
 	}
 }
 
-public void setSesionActiva(Boolean sesionActiva) {
+public void setSesionActiva(Integer sesionActiva) {
 	this.sesionActiva = sesionActiva;
 }
 public String getUsusario() {

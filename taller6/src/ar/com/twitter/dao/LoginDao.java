@@ -7,16 +7,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class login {
+public class LoginDao {
 
-	// lo leo en el JSP
-	public String usuario;
-	public String password;
-	public String respuesta;
-	public String redirect = null;
+
+	private String usuario;
+	private String password;
+	private String respuesta;
+	private String redirect = null;
 	
 	public String getRespuesta() {
-		return respuesta;
+		return this.respuesta;
 	}
 
 
@@ -28,7 +28,8 @@ public class login {
 	public void authLogin() throws SQLException{ // autoriza el ingreso
 		datos acceso = new datos();
 		acceso.conectar();
-		this.respuesta = "ERROR";
+		//this.respuesta = "ERROR";
+		this.setRespuesta("ERROR LOGIN");
 	try {
 		// TODO: EVITAR SQL INJECTION (OTRA METERIA)
 		String SQL = "SELECT usuario,password FROM usuarios where usuario = '" + this.usuario.toUpperCase() + "' and password = '" + this.password.toUpperCase() + "'";  
@@ -36,15 +37,17 @@ public class login {
 		 rs = stmt.executeQuery(SQL);
 		 
 		 // SOLO PARA DEBUG EN EL CATALINA.OUT:
-		 System.out.print("<ul v2 voy al main?>");
+		 System.out.print("<ul v2 voy al main3 ?>");
 			while (rs.next())
 			{
 				System.out.println(rs.getString(1));
 				
 				// TODO: nueva sesion, paso datos al objeto SESION
 				
-				this.respuesta = "OK";
-				this.redirect = "./main";
+				this.setRespuesta("OK"); //.respuesta = "OK";
+				this.setRedirect("./main.htm"); //this.redirect = "./main";
+				
+				System.out.println(this.getRedirect());
 			}
 			System.out.print("<ul>");
 			
@@ -59,6 +62,36 @@ public class login {
 
 
 
+	public String getRedirect() {
+		return redirect;
+	}
+
+
+
+	public void setRedirect(String redirect) {
+		this.redirect = redirect;
+	}
+
+
+
+	public ResultSet getRs() {
+		return rs;
+	}
+
+
+
+	public void setRs(ResultSet rs) {
+		this.rs = rs;
+	}
+
+
+
+	private void setRespuesta(final String respuesta) {
+		this.respuesta = respuesta;
+	}
+
+
+
 	public String getUsuario() {
 		return usuario;
 	}
@@ -67,7 +100,8 @@ public class login {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
-		System.out.println("Login.java: " + this.usuario );
+		System.out.println("Login.java: " + this.usuario + 
+				" redirect: " + this.redirect);
 	}
 
 

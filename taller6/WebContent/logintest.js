@@ -12,7 +12,7 @@ var iniciar = function(){
 		// TOMAMOS EL VALOR INGRESADO EN EL FORM POR EL USUARIO, USANDO JQUERY
 		var miUsuario = $("#loginUsuario").val();
 		var miPassword = $("#loginPassword").val();
-		var queryString = 'http://localhost:8080/twitter/authlogin.htm?usuario=' + miUsuario + '&password=' + miPassword;
+		var queryString = './authlogin.htm?usuario=' + miUsuario + '&password=' + miPassword + '&otro';
 		// ACA SOLAMENTE MANDAMOS USR Y PSW A LA VIEJA ESCUELA
 		$.getJSON( queryString,function(data){
 			console.log("rta "+JSON.stringify(data));

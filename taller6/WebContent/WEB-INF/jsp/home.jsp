@@ -7,72 +7,11 @@
 <title>Insert title here</title>
 <style type="text/css">.test{color:#f00;}</style>
 <script src="./jquery-1.10.2.js"></script> 
-<script type="text/javascript">
-//   jQuery.getJSON( "http://localhost:8080/twitter/test.htm",success(data, textStatus, jqXHR)] )
-
-// Assign handlers immediately after making the request,
-// and remember the jqxhr object for this request
-var jqxhr = $.getJSON( "http://localhost:8080/twitter/test.htm", function() {
-  console.log( "success" );
-  $('#indicator').html("cargando..");
-})
-  .done(function(json) {
-    console.log( "second success" );
-    
-    $.each(json,function(i,j){
-    	
-        $(j).each(function(k,v){    
-        	
-        	console.log(k);
-         console.log(v.mensaje);
-         console.log(v.autor);
-         console.log(v.fecha);
-         //$('#twitts').append(v.mensaje);
-         
-         $( "<div/>", {
-        	  "class": "test",
-        	  text:  v.mensaje, 
-        	  id: i,
-        	  style: "cursor:pointer",
-        	  tooltip: v.autor + " - " + v.fecha,
-        	  click: function() {
-        	    $( this ).toggleClass( "test" );
-        	    $( this ).hide();
-        	    $( this ).fadeIn();
-        	    //$( this ).attr('style','cursor:hand');
-        	    
-        	  }
-        	  //html:"<p>" + v.mensaje + "</p>"
-        	})
-        	  .appendTo( $('#twitts') );
-         
-        });
-    });
-   // $('#twitts').append(myP)
-   // .fadeIn()
-    
-    ;
-    $('p')
-    .html('hola')
-    .attr({ id : 'prueba' })
-  })
-  .fail(function() {
-    console.log( "error" );
-  })
-  .always(function(data) {
-    console.log( "complete\n" +  JSON.stringify(data));
-  });
- 
-// Perform other work here ...
- 
-// Set another completion function for the request above
-jqxhr.complete(function() {
-  console.log( "second complete" );
-});
-   
-</script>
+<script src="./home.js"></script> 
 </head>
 <body>
-<h1>hola</h1><div id="indicator"></div><div id="twitts"></div>
+<div id="cabecera"></div>
+<div id="contenedor"></div>
+<div id="pie"></div>
 </body>
 </html> 

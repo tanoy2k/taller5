@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
-import ar.com.twitter.dao.LoginDao;
+import ar.com.twitter.dao.LoginDaoFabio;
 import ar.com.twitter.model.Session;
 
 //import com.google.gson.Gson;
@@ -31,7 +31,7 @@ public class LoginControllerJSON extends AbstractJsonController {
 	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException, SQLException {
 		super.setHeaders(response);
 	
-		LoginDao login = new LoginDao();
+		LoginDaoFabio login = new LoginDaoFabio();
 		
 		// le paso el parametro usuario, a la propiedad usuario del objeto login
 		login.setUsuario(req.getParameter("usuario"));
@@ -60,37 +60,7 @@ public class LoginControllerJSON extends AbstractJsonController {
 		System.out.println("LoginControllerJSON.JSON: " + json);
  		return json;
 		
-		//return new Gson().toJson(login);
-		
-		// armo el json a mano,
-//		String jsonArtesano = "{'respuesta':'" + login.respuesta + "','redirect:" + login.redirect + "}";
-//		
-//		return jsonArtesano;
-		
-//		
-//		usuario usuarioDB = new usuario();
-//		
-//		String  miUsuario = req.getParameter("usuario");
-//		/*Collection<Tweet> tweets = new ArrayList<Tweet>();
-//		Tweet tweet = new Tweet();
-//		tweet.setAutor(miUsuario);
-//		tweet.setFecha(new Date());
-//		tweet.setMensaje("soy un tweet");
-//		Tweet tweet2 = new Tweet();
-//		tweet2.setAutor("Sergio");
-//		tweet2.setFecha(new Date());
-//		tweet2.setMensaje("soy otro tweet");
-//		tweets.add(tweet);
-//		tweets.add(tweet2);
-//		*/
-//		String url = "#";
-//		if (miUsuario.equals(usuarioDB.getUsuario())){
-//			url = "http://www.ole.com.ar";//response.sendRedirect("http://www.ole.com.ar");
-//		} else { 
-//			url = "http://www.google.com.";//response.sendRedirect("http://www.clarin.com.ar");
-//		}
-//		return url;
-		
+	
 		//return new Gson().toJson(tweets);
 		/*
 		if (miUsuario.equals("emilio")){

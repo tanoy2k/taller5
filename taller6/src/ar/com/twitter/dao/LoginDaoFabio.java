@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-public class LoginDao {
+public class LoginDaoFabio {
 
 
 	private String usuario;

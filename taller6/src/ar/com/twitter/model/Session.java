@@ -50,7 +50,7 @@ public class Session { // lo pasamos a inglés para no herir sensibilidades
 			this.setRedirect("./home.htm?1");
 			System.out.println("Session.evaluarLogin() ; redirect: " + this.getRedirect() );
 //			miCallback = "despliegaBienvenida('"+ this.getUsusario() + "')";//"despliegaBienvenida('"+ this.getUsusario() + "')";
-//			this.setCallback(miCallback);  // le digo a la vista que debiera trabajar en el ambito inicio
+			this.setCallback(miCallback);  // le digo a la vista que debiera trabajar en el ambito inicio
 		} else {
 			this.setSesionActiva(false);
 			this.setRedirect("#");

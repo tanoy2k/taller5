@@ -29,16 +29,11 @@ var iniciar = function(){
 				// TOMAMOS EL VALOR INGRESADO EN EL FORM POR EL USUARIO, USANDO JQUERY
 				var miUsuario = $("#loginUsuario").val();
 				var miPassword = $("#loginPassword").val();
-				var queryString = './authlogin.htm?usuario=' + miUsuario + '&password=' + miPassword + '&otro';
+				var queryString = './login2.htm?usuario=' + miUsuario + '&password=' + miPassword + '&otro';
 				// ACA SOLAMENTE MANDAMOS USR Y PSW A LA VIEJA ESCUELA
-				$.getJSON( queryString,function(data){
-					console.log("rta "+JSON.stringify(data));
-					if (data.sesionActiva){
-						window.document.location.href = data.redirect;
-					}else{
-						alert("ingreso incorrecto: ");
-					}
-					});
+				window.location=queryString;
+				
+				
 				});
 
 

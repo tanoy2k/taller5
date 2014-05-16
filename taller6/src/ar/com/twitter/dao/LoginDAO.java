@@ -8,7 +8,7 @@ public class LoginDAO {
 	private String usuario;
 	private String password;
 	private boolean validar;
-	private datos acceso = new datos();
+
 	private ResultSet rs;
 	private int registros;
 
@@ -30,13 +30,14 @@ public class LoginDAO {
 
 	public boolean validarLoginDao(String usuario, String password)
 			throws SQLException {
-
+		datos acceso = new datos();
 		acceso.conectar();
-		String SQL = "SELECT USUARIO,PASSWORD FROM USUARIOS WHERE USUARIO='"
-				+ usuario + "' AND PASSWORD='" + password + "'";
+		String SQL = "SELECT COUNT(*) FROM USUARIOS where usuario='" + usuario
+				+ "' AND PASSWORD='" + password + "'";
 		Statement stmt = acceso.con.createStatement();
 		rs = stmt.executeQuery(SQL);
-		registros = rs.getInt(0);
+		rs.next();
+		registros=rs.getInt(1);
 		if (registros == 1) {
 			validar = true;
 		} else {

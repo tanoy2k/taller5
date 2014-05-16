@@ -2,28 +2,43 @@ package ar.com.twitter.model;
 
 public class materias {
 
-	private int articulo;
-	private String descripcion;
-	private int precioventa;
-	public int getArticulo() {
-		return articulo;
+	private int materia;
+
+	private int anio;
+
+	public int getAnio() {
+		return anio;
 	}
-	public void setArticulo(int articulo) {
-		this.articulo = articulo;
+
+	public void setAnio(int anio) {
+		this.anio = anio;
 	}
+
+	public int getMateria() {
+		return materia;
+	}
+
+	public void setMateria(int materia) {
+		this.materia = materia;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public int getPrecioventa() {
-		return precioventa;
+
+	public int getCuatrimestre() {
+		return cuatrimestre;
 	}
-	public void setPrecioventa(int precioventa) {
-		this.precioventa = precioventa;
+
+	public void setCuatrimestre(int cuatrimestre) {
+		this.cuatrimestre = cuatrimestre;
 	}
-	
-	
-	
+
+	private String descripcion;
+	private int cuatrimestre;
+
 }

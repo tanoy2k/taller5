@@ -30,6 +30,7 @@
 <input id="loginPassword" name="loginPassword" type="password"/>
 <br><button id="btnIngresar">Ingresar</button>
  
+ <br><button id="btn2Ingresar">IngresarEmilio</button>
  
 </body>
 </html> 

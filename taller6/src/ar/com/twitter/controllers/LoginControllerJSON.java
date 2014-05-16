@@ -53,7 +53,7 @@ public class LoginControllerJSON extends AbstractJsonController {
 		
 		//return "http://www.google.com.ar";
 		Session sesion = Session.getInstance();
-		sesion.setUsusario(login.getUsuario());
+		sesion.setUsuario(login.getUsuario());
 		sesion.evaluarLogin(login.getRespuesta()); 
 		Gson gson = new Gson(); 
 		String json = gson.toJson(sesion); 

@@ -22,7 +22,24 @@ var iniciar = function(){
 				alert("ingreso incorrecto: ");
 			}
 			});
-		}); //
+		});
+	$("#btn2Ingresar").on("click",function()
+			{
+				console.log(" OJO CON EL CONSOLE.LOG, NO TODOS LOS BROWSERS LO ACEPTAN...LO USAMOS SOLO POR DEBUG");
+				// TOMAMOS EL VALOR INGRESADO EN EL FORM POR EL USUARIO, USANDO JQUERY
+				var miUsuario = $("#loginUsuario").val();
+				var miPassword = $("#loginPassword").val();
+				var queryString = './authlogin.htm?usuario=' + miUsuario + '&password=' + miPassword + '&otro';
+				// ACA SOLAMENTE MANDAMOS USR Y PSW A LA VIEJA ESCUELA
+				$.getJSON( queryString,function(data){
+					console.log("rta "+JSON.stringify(data));
+					if (data.sesionActiva){
+						window.document.location.href = data.redirect;
+					}else{
+						alert("ingreso incorrecto: ");
+					}
+					});
+				});
 
 
 

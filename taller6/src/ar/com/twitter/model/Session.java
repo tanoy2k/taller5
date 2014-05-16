@@ -4,7 +4,7 @@ public class Session { // lo pasamos a inglés para no herir sensibilidades
 	/**
 	 * @author lucia j
 	 */
-	private String ususario; // estaba public, feo eso!
+	private String usuario; // estaba public, feo eso!
 	private String redirect;
 	private String hash;
 	private String dateTime;
@@ -62,12 +62,12 @@ public class Session { // lo pasamos a inglés para no herir sensibilidades
 		this.sesionActiva = sesionActiva;
 	}
 
-	public String getUsusario() {
-		return ususario;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setUsusario(String ususario) {
-		this.ususario = ususario;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getRedirect() {

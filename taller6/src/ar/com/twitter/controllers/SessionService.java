@@ -30,4 +30,10 @@ public class SessionService {
 		return newsession.getHash();
 
 	}
+	
+	public boolean GetSessionActiva (String hash) throws SQLException{
+		SessionDAO sDAO=new SessionDAO();
+		estado=sDAO.GetSessionActivaDAO(hash);
+		return estado;
+	}
 }

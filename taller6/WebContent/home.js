@@ -14,7 +14,7 @@ var estableceCaberera = function()  // #cabecera
 };
 
 var estableceContenido = function(){   // #contenedor
-	// por ahora, de ejemplo, al iniciar muestro este metodo solo... se iràn mostrando , segùn el ambito definido en la sesion, o los callbacks de cada evento/funcion
+	// por ahora, de ejemplo, al iniciar muestro este metodo solo... se irÃ n mostrando , segÃ¹n el ambito definido en la sesion, o los callbacks de cada evento/funcion
 	getAlumnosTodos();
 };	
 
@@ -58,7 +58,7 @@ var Alumno=function(nombre, apellido,dni){// simulo el objeto en javascript
 
 
 var Alumnos = function(){
-	this.alumnos = new Array(); // defino que contendrá una collection ( object alumno )
+	this.alumnos = new Array(); // defino que contendrÃ¡ una collection ( object alumno )
 	this.addAlumno = function(alumno){
 		this.alumnos.push(alumno);
 	};
@@ -69,6 +69,7 @@ var Alumnos = function(){
 //		// Creo, en este caso la tabla como elem del DOM ( document object model , estructura jerarquica del documento en el navegador web.)		
 //		var tbl = $("<table/>").attr("id","tablaContenido");
 //		$("#contenedor").append(tbl);
+		$('#my-table > tbody:last').append('<tr><td>'+item.nombre+'</td><td>'+item.apellido+'</td><td>'+item.dni+'</td></tr>'); 
 		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Alumno
 	    $.each(this.alumnos, function(i,item){
 	    	// apoyandonos en el framework twitter bootstrap, dibujamos la tabla en la vista:
@@ -84,13 +85,13 @@ var Alumnos = function(){
 //    this.alumnos.push(alumno); //<-- "mete" al objeto alumno que viene como parm a la lista    
 //}; 
 
-// instancio el objeto mis alumnos, que contendrà una coleccion de èstos...
+// instancio el objeto mis alumnos, que contendrÃ  una coleccion de Ã¨stos... como variable global
 var misAlumnos = new Alumnos();
 
 
-//un comportamiento mas sofisticado: traigo una colection de alumnos pidiendo al backend a travès de un get jquery
-//èste me devuelve una respuesta json, la cual la parseo a un objeto en javascript 
-//y mi objeto luego sabrà que hacer con esto...
+//un comportamiento mas sofisticado: traigo una colection de alumnos pidiendo al backend a travÃ¨s de un get jquery
+//Ã¨ste me devuelve una respuesta json, la cual la parseo a un objeto en javascript 
+//y mi objeto luego sabrÃ  que hacer con esto...
 //probemos:
 //metodo traer alumnos, segun pedido en pantalla, por ahora pruebo con all
 var getAlumnosTodos =	function(){
@@ -99,10 +100,7 @@ var getAlumnosTodos =	function(){
 	// usando jquery traemos el json desde esa url
 	$.getJSON(url , function(alumnosJson){ // aca el controller me responde con un json
 		
-//		// instancio el objeto mis alumnos, que contendrà una coleccion de èstos...
-//		var misAlumnos = new Alumnos();
-		
-		// como bien dijo el profe Damián, usemos las convenciones y estandares, pasamos la data json otra vez a obj:
+		// como bien dijo el profe DamiÃ¡n, usemos las convenciones y estandares, pasamos la data json otra vez a obj:
 		jQuery.each(alumnosJson, function(pos, item){
 			var miAlumno = new Alumno(); // instancio un objeto de mi clase alumno
 			miAlumno.setNombre(alumnosJson[pos].nombre);
@@ -118,4 +116,38 @@ var getAlumnosTodos =	function(){
 
 
 
+
+/*DIBUJAR DINAMICAMENTE LA TABLA...
+
+
+var CabezaTabla = function(miJson){
+  this.miCabeza = jQuery('#tablaAlumnos thead tr:eq(0)');
+  this.miCampo = '';
+  this.dibujaCamposCabecera = function(miJson){
+  												jQuery.each(miJson, function(k,v){this.miCampo+='<th>'+k+'</th>'});
+  											    return this.miCampo};
+}
+undefined
+var miCabezaTabla = new CabezaTabla
+undefined
+miCabezaTabla.dibujaCampos(miJson)
+""
+miCabezaTabla.miCampo
+""
+miCabezaTabla.miCabeza
+[
+<tr>â€‹</tr>â€‹
+]
+var CabezaTabla = function(miJson){
+  this.miCabeza = jQuery('#tablaAlumnos thead tr:eq(0)');
+  
+  this.dibujaCampos = function(miJson){var miCampo='';jQuery.each(miJson, function(k,v){miCampo+='<th>'+k+'</th>'}); jQuery(this.miCabeza).append(miCampo)}
+}
+undefined
+var miCabezaTabla = new CabezaTabla
+undefined
+miCabezaTabla.dibujaCampos(miJson)
+undefined
+miCabezaTabla.miCabeza
+*/
 	

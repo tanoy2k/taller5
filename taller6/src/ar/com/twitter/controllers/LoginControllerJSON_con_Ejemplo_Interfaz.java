@@ -23,7 +23,7 @@ import ar.com.twitter.model.Session;
 
 
 @Controller
-public class LoginControllerJSON extends AbstractJsonController {
+public class LoginControllerJSON_con_Ejemplo_Interfaz extends AbstractJsonController {
 	
 	@RequestMapping(value = "/authlogin{usuario}", method = RequestMethod.GET, headers = "Accept=*/*")
 	public @ResponseBody String authlogin(HttpServletRequest req, HttpServletResponse response) throws IOException, SQLException {

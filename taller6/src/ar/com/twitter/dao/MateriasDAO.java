@@ -16,6 +16,7 @@ public class MateriasDAO {
 	private ArrayList Materias;
 	private ArrayList Correlatividades;
 	private ArrayList MateriasPorAlumno;
+	private ArrayList MateriasPorCuatrimestre;
 
 	public ArrayList<materias> getMaterias() throws SQLException {
 		datos acceso = new datos();
@@ -39,11 +40,7 @@ public class MateriasDAO {
 		return Materias;
 
 	}
-
-	public void setMaterias(ArrayList materias) {
-		this.Materias = materias;
-	}
-
+	
 	public ArrayList <Correlatividades> getCorrelatividades() throws SQLException {
 		datos acceso = new datos();
 		acceso.conectar();
@@ -71,6 +68,12 @@ public class MateriasDAO {
 		}
 		return Correlatividades;
 	}
+
+	public void setMaterias(ArrayList materias) {
+		this.Materias = materias;
+	}
+
+	
 	
 
 }

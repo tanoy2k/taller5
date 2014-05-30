@@ -41,6 +41,33 @@ public class MateriasDAO {
 
 	}
 	
+	public ArrayList<materias> getMateriasPorCuatrimestre(int anio,int cuatrimestre) throws SQLException {
+		datos acceso = new datos();
+		acceso.conectar();
+		String SQL = "SELECT * from materias where anio="+anio + "and cuatrimestre="+cuatrimestre;
+		Statement stmt = acceso.con.createStatement();
+		rs = stmt.executeQuery(SQL);
+		ArrayList<materias> MateriasPorCuatrimestre = new ArrayList<materias>();
+		while (rs.next()) {
+			materias mat = new materias();
+			mat.setMateria(rs.getInt("ID"));
+			mat.setDescripcion(rs.getString("DESCRIPCION"));
+			mat.setAnio(rs.getInt("ANIO"));
+			mat.setCuatrimestre(rs.getInt("CUATRIMESTRE"));
+			System.out.println(mat.getDescripcion().toString());
+
+			MateriasPorCuatrimestre.add(mat);
+
+		}
+
+		return MateriasPorCuatrimestre;
+
+	}
+	
+	
+	
+	
+	
 	public ArrayList <Correlatividades> getCorrelatividades() throws SQLException {
 		datos acceso = new datos();
 		acceso.conectar();

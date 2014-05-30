@@ -17,21 +17,7 @@ public class AlumnosDao {
 		datos acceso= new datos();
 		acceso.conectar();
 		String SQL = "SELECT dni,apellido,nombre from alumnos";  
-		Statement stmt = acceso.con.createStatement(); 
-		rs = stmt.executeQuery(SQL);
-		ArrayList <Alumno> alumnos=new ArrayList<Alumno>();
-		while (rs.next())
-			{
-			Alumno alu=new Alumno();
-			alu.setDni(rs.getLong("dni"));
-			alu.setApellido(rs.getString("apellido"));
-			alu.setNombre(rs.getString("nombre"));
-			
-			System.out.println(alu.getApellido());
-			
-			alumnos.add(alu);
-					
-			}
+		ArrayList<Alumno> alumnos = lala(acceso, SQL);
 				
 		return alumnos;
 		
@@ -43,6 +29,14 @@ public class AlumnosDao {
 		acceso.conectar();
 		System.out.println("AlumnosDao.obtenerAlumno("+ alumnoId +")");//
 		String SQL = "SELECT dni,apellido,nombre from alumnos where dni = " + alumnoId + "";  
+		ArrayList<Alumno> alumnos = lala(acceso, SQL);
+		
+		return alumnos;
+	}
+
+
+	private ArrayList<Alumno> lala(datos acceso, String SQL)
+			throws SQLException {
 		Statement stmt = acceso.con.createStatement(); 
 		rs = stmt.executeQuery(SQL);
 		ArrayList <Alumno> alumnos=new ArrayList<Alumno>();
@@ -55,7 +49,6 @@ public class AlumnosDao {
 			System.out.println(miAlumno.getApellido());
 			alumnos.add(miAlumno);		
 			}
-		
 		return alumnos;
 	}
 }

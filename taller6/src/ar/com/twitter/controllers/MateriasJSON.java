@@ -41,6 +41,21 @@ public class MateriasJSON extends AbstractJsonController {
 				return new Gson().toJson(Correlatividades);
 				
 	}
+	
+
+	@RequestMapping(value = "/getMaterias/{cuatrimestre}", method = RequestMethod.GET, headers = "Accept=*/*")
+	public @ResponseBody String getMaterias(HttpServletRequest req, HttpServletResponse response)
+			throws IOException, SQLException {
+				MateriasDAO matdao=new MateriasDAO();
+				Collection <materias> Materias;
+				Materias=matdao.getMaterias();
+				return new Gson().toJson(Materias);
+				
+	}
+	
+	
+	
+	
 
 		
 }

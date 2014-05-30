@@ -2,9 +2,7 @@ $(document).ready(function() {
 	//  Rescato usuario y despliego acciones en cabecera
 	estableceCaberera();
 	//  Rescato ambito a desplegar desde sesion
-	//  por ahora, de ejemplo, al iniciar muestro este metodo solo... se ir�n mostrando , seg�n el ambito definido en la sesion, o los callbacks de cada evento/funcion
-	window.top.miContenido = new ContenidoPrincipal(); 
-	miContenido.mostrarContenido();	
+	estableceContenido();
 	//  Despliego contenido del footer
 	establecePie();		
 });
@@ -16,22 +14,72 @@ var estableceCaberera = function()  // #cabecera
 };
 
 
-
 var ContenidoPrincipal = function(){
-	var self = this; //<-- por convencion, uso self para referirme a la instancia.
-	this.ambito = 'inicio';//getAmbito();mos
+	var self 		= this; //<-- por convencion, uso self para referirme a la instancia.
+	this.ambito 	= 'inicio';//getAmbito();mos
+	this.contenido 	= $('#contenedor') ; // con esta prop donde poner el contenido
+	this.acciones 	= $('#cabecera');
+	this.limpiar 	= function(){
+						$('#contenedor').html('');
+				   	};
 	this.mostrarContenido = function(){
 		switch (self.ambito) {
 		case 'inicio':
-			// instancio el objeto mis alumnos, que contendr� una coleccion de �stos...
-			var misAlumnos = new Alumnos();			
-			misAlumnos.getTodosLosAlumnos();
+
+			// agrego un botón, a modo de pruebas, que tenga el action 'listarMaterias'
+			var btnGetMaterias = $('<button/>')
+					 			.attr('type','button')
+					 			.attr('id','getMaterias')
+					 			.text('Listar todas las materias')					 			
+					 			.addClass('btn btn-primary btn-lg btn-block')					 			
+					 			.click(function(){
+									window.miContenido.ambito = 'listarMaterias';
+									window.miContenido.mostrarContenido();
+					 			});
+			$(self.acciones).append(btnGetMaterias);
+			
+			// agrego un botón, a modo de pruebas, que tenga el action 'listarMaterias'
+			var btnGetAlumnos = $('<button/>')
+					 			.attr('type','button')
+					 			.attr('id','getAlumnos')
+					 			.text('Listar todos los alumnos')					 			
+					 			.addClass('btn btn-primary btn-lg btn-block')					 			
+					 			.click(function(){
+									window.miContenido.ambito = 'listarAlumnos';
+									window.miContenido.mostrarContenido();
+					 			});
+			$(self.acciones).append(btnGetAlumnos);			
+			
+			// agrego un botón, a modo de pruebas, que tenga el action 'logout'
+			var btnLogout = $('<button/>')
+				 			.attr('type','button')
+				 			.attr('id','logout')
+				 			.text('Salir de la aplicaci\u00F3n')
+				 			.addClass('btn btn-primary btn-lg btn-block')
+				 			.click(function(){
+				 				$.getJSON('logout.htm', 
+				 							function(data){
+				 						    	console.log(' logout: '+JSON.stringify(data));
+				 						    }
+				 			    );
+				 			});
+			$(self.acciones).append(btnLogout);			
+			
+			
 			break;
 		case 'listarMaterias':
 			alert("ListarMaterias()");
+			self.limpiar();
 			// instancio el objeto mis alumnos, que contendr� una coleccion de �stos...
 			var misMaterias = new Materias();			
 			misMaterias.getMateriasCuatrimestre();
+		    break;
+		case 'listarAlumnos':
+			alert("ListarAlumnos()");
+			self.limpiar();			
+			// instancio el objeto mis alumnos, que contendr� una coleccion de �stos...
+			var misAlumnos = new Alumnos();			
+			misAlumnos.getTodosLosAlumnos(); //<-- este lo puedo pasar al constructor...cuando lo instancio, q se liste			
 		    break;
 		default:
 		    //default code block
@@ -44,9 +92,11 @@ var ContenidoPrincipal = function(){
 	
 }; // fin ContenidoPrincipal()
 
-//var estableceContenido = function(){   // #contenedor
-//
-//};	
+var estableceContenido = function(){   // #contenedor
+	//  por ahora, de ejemplo, al iniciar muestro este metodo solo... se ir�n mostrando , seg�n el ambito definido en la sesion, o los callbacks de cada evento/funcion
+	window.top.miContenido = new ContenidoPrincipal(); 
+	miContenido.mostrarContenido();	
+};	
 
 
 var establecePie = function(){
@@ -126,7 +176,7 @@ var Alumnos = function(){
 	this.mostrarEnTabla = function(){
 //		// Creo, en este caso la tabla como elem del DOM ( document object model , estructura jerarquica del documento en el navegador web.)
 		
-
+		$('#tablaAlumnos').remove();
 		var tbl = $("<table/>").attr("id","tablaAlumnos");
 		var theadHtml = '<tr><th>Nombre</th><th>Apellido</th><th>DNI</th></tr>';		
 		var thead = $('<thead/>').attr('class','tablaAlumnosEncabezado');
@@ -185,17 +235,6 @@ var getAlumnosTodos =	function(){
 	});// Fin getJSON
 
 }; // fin alumno.getAlumnosTodos
-
-
-
-
-
-
-
-
-
-
-
 
 
 //////////////////////////////////////////////////////////
@@ -290,7 +329,8 @@ var Materias = function(){
 	this.mostrarEnTabla = function(){
 //		// Creo, en este caso la tabla como elem del DOM ( document object model , estructura jerarquica del documento en el navegador web.)
 		
-
+		// primero blanqueo...
+		$('#tablaMaterias').remove();
 		var tbl = $("<table/>").attr("id","tablaMaterias");
 		var theadHtml = '<tr><th>Anio</th><th>Cuatrimestre</th><th>Descripcion</th><th>Estado</th></tr>';		
 		var thead = $('<thead/>').attr('class','tablaMateriasEncabezado');
@@ -303,70 +343,7 @@ var Materias = function(){
 		
 		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Materia
 	    $.each(self.materias, function(i,materia){
-	    	// apoyandonos en el framework twitter bootstrap, dibujamos la tabla en la vista:
-//	       	$('#my-table > tbody:last').append('<tr><td>'+item.nombre+'</td><td>'+item.apellido+'</td><td>'+item.dni+'</td></tr>');                
-	       	$('#tablaMaterias').find('tbody').append(materia.getRow());
-	       	
+	       	$('#tablaMaterias').find('tbody').append(materia.getRow());	       	
         }); // fin .each
-	}; // fin mostrarEnTabla
-	
+	}; // fin mostrarEnTabla	
 };	// fin Materias
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

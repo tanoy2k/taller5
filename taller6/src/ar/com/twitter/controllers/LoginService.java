@@ -35,6 +35,8 @@ public class LoginService {
 		{
 			System.out.println("LOGIN OKKKKK");
 			SessionService Ses=new SessionService();
+			
+			
 			hash=Ses.CreateSession(login.getUsuario());
 			System.out.println(hash);
 			response.sendRedirect("http://localhost:8080/twitter/main.htm?hash="+hash);

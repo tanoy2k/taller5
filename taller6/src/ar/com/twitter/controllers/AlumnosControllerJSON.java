@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.com.twitter.dao.*;
 import ar.com.twitter.model.Alumno;
+import ar.com.twitter.model.Session;
 
 import com.google.gson.Gson;
 
@@ -49,23 +51,39 @@ public class AlumnosControllerJSON extends AbstractJsonController {
 	
 	
 	@RequestMapping("/alumnos/todos")
-	public @ResponseBody String obtenerAlumnosController( HttpServletResponse response) throws IOException, SQLException {
-	
-		super.setHeaders(response);
-		System.out.println("AlumnosControllerJSON/alumnos/*:  " );
-		Collection<Alumno> Alumnos;
-		AlumnosDao alumno = new AlumnosDao();
-		Alumnos = alumno.obtenerAlumnos(); // retorna todos los lumnos
+	public @ResponseBody String obtenerAlumnosController( HttpServletResponse response,HttpSession ses) throws IOException, SQLException {
+		String json;		
+		if (ses.getAttribute("usuario")==null)
+				{
+				String e="error";
+				Gson gson=new Gson();
+				json=gson.toJson(e);
+				
+				}
+				
+				else
+				{
+				
+				super.setHeaders(response);
+				System.out.println("AlumnosControllerJSON/alumnos/*:  " );
+				Collection<Alumno> Alumnos;
+				AlumnosDao alumno = new AlumnosDao();
+				Alumnos = alumno.obtenerAlumnos(); // retorna todos los lumnos
+				
+//				public ArrayList<String> obtenerAlumnos(String parametro){
+		 		//
+//						ArrayList<String> Alumnos = new ArrayList<String>();		
+				Gson gson = new Gson(); 
+				json = gson.toJson(Alumnos);
+				// la fnc obtenerAlumnos esta hardcoded por test, reemplazar por el SQL correspondiente
+				System.out.println("AlumnosController/alumnos/todos/json:  " + json);
+				
+				}
+				
+				return json;
 		
-//		public ArrayList<String> obtenerAlumnos(String parametro){
- 		//
-//				ArrayList<String> Alumnos = new ArrayList<String>();		
-		Gson gson = new Gson(); 
-		String json = gson.toJson(Alumnos);
-		// la fnc obtenerAlumnos esta hardcoded por test, reemplazar por el SQL correspondiente
-		System.out.println("AlumnosController/alumnos/todos/json:  " + json);
-		return json;
-	  }
+		 }
+		
 	
 	@RequestMapping("/alumnos/getalumnobydni{dni}")
 

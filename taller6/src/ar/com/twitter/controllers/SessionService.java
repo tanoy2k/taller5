@@ -36,4 +36,6 @@ public class SessionService {
 		estado=sDAO.GetSessionActivaDAO(hash);
 		return estado;
 	}
+	
+	
 }

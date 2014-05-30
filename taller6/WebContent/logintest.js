@@ -35,7 +35,13 @@ var iniciar = function(){
 				
 				
 				});
-
+	$("#btn3logout").on("click",function()
+			{
+				var queryString = './logout.htm';
+				window.location=queryString;
+				});
+	
+	
 
 
 		

@@ -13,9 +13,36 @@ var estableceCaberera = function()  // #cabecera
     console.log("CABECERA_JSON");
 };
 
+
+
+var ContenidoPrincipal = function(){
+	var self = this; //<-- por convencion, uso self para referirme a la instancia.
+	this.ambito = 'inicio';//getAmbito();mos
+	this.mostrarContenido = function(){
+		switch (self.ambito) {
+		case 'inicio':
+			// instancio el objeto mis alumnos, que contendr� una coleccion de �stos...
+			var misAlumnos = new Alumnos();			
+			misAlumnos.getTodosLosAlumnos();
+			break;
+		case 'listarMaterias':
+		    //code block
+		    break;
+		default:
+		    //default code block
+		}; // fin switch (self.ambito)
+	}; // fin mostrarContenido()
+	
+	this.getAmbito = function(){
+		return self.ambito;
+	};
+	
+}; // fin ContenidoPrincipal()
+
 var estableceContenido = function(){   // #contenedor
-	// por ahora, de ejemplo, al iniciar muestro este metodo solo... se iràn mostrando , segùn el ambito definido en la sesion, o los callbacks de cada evento/funcion
-	getAlumnosTodos();
+	// por ahora, de ejemplo, al iniciar muestro este metodo solo... se ir�n mostrando , seg�n el ambito definido en la sesion, o los callbacks de cada evento/funcion
+	var miContenido = new ContenidoPrincipal();
+	miContenido.mostrarContenido();
 };	
 
 
@@ -24,7 +51,9 @@ var establecePie = function(){
 };  // #pie	
 
 
-var Alumno=function(nombre, apellido,dni){// simulo el objeto en javascript
+var Alumno = function(nombre, apellido,dni){// simulo el objeto en javascript
+	// por convenciòn hago referencia a traves de self a la instancia de mi objeto.
+	var self = this;
 	// establezco las propiedades
 	this.nombre;
 	this.apellido;
@@ -54,28 +83,70 @@ var Alumno=function(nombre, apellido,dni){// simulo el objeto en javascript
 	{
 		return this.dni;
 	};	
+	// Le doy conocimiento a mi alumno de còmo mostrarse en un row de una tabla...
+	this.getRow = function(){
+       	var rowHtml = '<tr><td>'+self.nombre+'</td><td>'+self.apellido+'</td><td>'+self.dni+'</td></tr>';
+       	return rowHtml;
+	};	
 };
 
 
 var Alumnos = function(){
-	this.alumnos = new Array(); // defino que contendrá una collection ( object alumno )
+	var self = this;// <-- por convencion
+	this.alumnos = new Array(); // defino que contendr� una collection ( object alumno )
 	this.addAlumno = function(alumno){
-		this.alumnos.push(alumno);
+		self.alumnos.push(alumno);
 	};
+	
+    this.getTodosLosAlumnos = function(){ 
+    	// defino la url al recurso que me entrega la data
+    	var url = 'alumnos/todos.htm'; // no hace falta poner localhost a fuego!
+    	// usando jquery traemos el json desde esa url
+    	$.getJSON(url , function(alumnosJson){ // aca el controller me responde con un json
+    		
+    		// como bien dijo el profe Dami�n, usemos las convenciones y estandares, pasamos la data json otra vez a obj:
+    		jQuery.each(alumnosJson, function(pos, alumno){
+    			var miAlumno = new Alumno(); // instancio un objeto de mi clase alumno
+    			miAlumno.setNombre(alumno.nombre);
+    			miAlumno.setApellido(alumno.apellido);
+    			miAlumno.setDNI(alumno.dni);
+    			self.addAlumno( miAlumno );
+    		});  //Fin JQuery.each
+    		
+    		// Luego de bajar la data JSON al 'objeto' js, le digo que se muestre en una tabla mediante otro comportamiento de la misma clase:
+    		self.mostrarEnTabla();
+    	});// Fin getJSON	    	
+    }; // end class
+	
+
+	// el siguiente comportamiento de la clase Alumnos, es mostrar su estado actual en una tabla HTML:
+	this.mostrarEnTabla = function(){
+//		// Creo, en este caso la tabla como elem del DOM ( document object model , estructura jerarquica del documento en el navegador web.)
+		
+
+		var tbl = $("<table/>").attr("id","tablaAlumnos");
+		var theadHtml = '<tr><th>Nombre</th><th>Apellido</th><th>DNI</th></tr>';		
+		var thead = $('<thead/>').attr('class','tablaAlumnosEncabezado');
+		var tbody = $('<tbody/>').attr('class','tablaAlumnosCuerpo');
+		$("#contenedor").append(tbl);		
+		$('#tablaAlumnos').append(thead);
+		$('#tablaAlumnos').append(tbody);
+		$('#tablaAlumnos').find('thead').append(theadHtml);
+		$('#tablaAlumnos').addClass("table table-striped");
+		
+		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Alumno
+	    $.each(self.alumnos, function(i,alumno){
+	    	// apoyandonos en el framework twitter bootstrap, dibujamos la tabla en la vista:
+//	       	$('#my-table > tbody:last').append('<tr><td>'+item.nombre+'</td><td>'+item.apellido+'</td><td>'+item.dni+'</td></tr>');                
+	       	$('#tablaAlumnos').find('tbody').append(alumno.getRow());
+	       	
+        }); // fin .each
+	}; // fin mostrarEnTabla
+	
+	// la siguiente funcion es solo a modo de debug en la consola de chrome
 	this.listarAlumnos = function(){
 		console.log( "getAlumnosTodos(): "+  JSON.stringify(this.alumnos ) ); // ojo con console.log, en viejos navegadores no funciona 
 	};
-	this.mostrarEnTabla = function(){
-//		// Creo, en este caso la tabla como elem del DOM ( document object model , estructura jerarquica del documento en el navegador web.)		
-//		var tbl = $("<table/>").attr("id","tablaContenido");
-//		$("#contenedor").append(tbl);
-		$('#my-table > tbody:last').append('<tr><td>'+item.nombre+'</td><td>'+item.apellido+'</td><td>'+item.dni+'</td></tr>'); 
-		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Alumno
-	    $.each(this.alumnos, function(i,item){
-	    	// apoyandonos en el framework twitter bootstrap, dibujamos la tabla en la vista:
-	       	$('#my-table > tbody:last').append('<tr><td>'+item.nombre+'</td><td>'+item.apellido+'</td><td>'+item.dni+'</td></tr>');                
-        }); // fin .each
-	}; // fin mostrarEnTabla
 };	// fin Alumnos
 
 
@@ -85,13 +156,12 @@ var Alumnos = function(){
 //    this.alumnos.push(alumno); //<-- "mete" al objeto alumno que viene como parm a la lista    
 //}; 
 
-// instancio el objeto mis alumnos, que contendrà una coleccion de èstos... como variable global
-var misAlumnos = new Alumnos();
 
 
-//un comportamiento mas sofisticado: traigo una colection de alumnos pidiendo al backend a travès de un get jquery
-//èste me devuelve una respuesta json, la cual la parseo a un objeto en javascript 
-//y mi objeto luego sabrà que hacer con esto...
+
+//un comportamiento mas sofisticado: traigo una colection de alumnos pidiendo al backend a trav�s de un get jquery
+//�ste me devuelve una respuesta json, la cual la parseo a un objeto en javascript 
+//y mi objeto luego sabr� que hacer con esto...
 //probemos:
 //metodo traer alumnos, segun pedido en pantalla, por ahora pruebo con all
 var getAlumnosTodos =	function(){
@@ -100,15 +170,14 @@ var getAlumnosTodos =	function(){
 	// usando jquery traemos el json desde esa url
 	$.getJSON(url , function(alumnosJson){ // aca el controller me responde con un json
 		
-		// como bien dijo el profe Damián, usemos las convenciones y estandares, pasamos la data json otra vez a obj:
-		jQuery.each(alumnosJson, function(pos, item){
+		// como bien dijo el profe Dami�n, usemos las convenciones y estandares, pasamos la data json otra vez a obj:
+		jQuery.each(alumnosJson, function(pos, alumno){
 			var miAlumno = new Alumno(); // instancio un objeto de mi clase alumno
-			miAlumno.setNombre(alumnosJson[pos].nombre);
-			miAlumno.setApellido(alumnosJson[pos].apellido);
-			miAlumno.setDNI(alumnosJson[pos].dni);
+			miAlumno.setNombre(alumno.nombre);
+			miAlumno.setApellido(alumno.apellido);
+			miAlumno.setDNI(alumno.dni);
 			misAlumnos.addAlumno( miAlumno );
 		});  //Fin JQuery.each
-		misAlumnos.listarAlumnos();
 		misAlumnos.mostrarEnTabla();
 	});// Fin getJSON
 
@@ -116,38 +185,4 @@ var getAlumnosTodos =	function(){
 
 
 
-
-/*DIBUJAR DINAMICAMENTE LA TABLA...
-
-
-var CabezaTabla = function(miJson){
-  this.miCabeza = jQuery('#tablaAlumnos thead tr:eq(0)');
-  this.miCampo = '';
-  this.dibujaCamposCabecera = function(miJson){
-  												jQuery.each(miJson, function(k,v){this.miCampo+='<th>'+k+'</th>'});
-  											    return this.miCampo};
-}
-undefined
-var miCabezaTabla = new CabezaTabla
-undefined
-miCabezaTabla.dibujaCampos(miJson)
-""
-miCabezaTabla.miCampo
-""
-miCabezaTabla.miCabeza
-[
-<tr>​</tr>​
-]
-var CabezaTabla = function(miJson){
-  this.miCabeza = jQuery('#tablaAlumnos thead tr:eq(0)');
-  
-  this.dibujaCampos = function(miJson){var miCampo='';jQuery.each(miJson, function(k,v){miCampo+='<th>'+k+'</th>'}); jQuery(this.miCabeza).append(miCampo)}
-}
-undefined
-var miCabezaTabla = new CabezaTabla
-undefined
-miCabezaTabla.dibujaCampos(miJson)
-undefined
-miCabezaTabla.miCabeza
-*/
 	

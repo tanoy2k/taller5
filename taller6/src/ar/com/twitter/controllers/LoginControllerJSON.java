@@ -60,12 +60,6 @@ public class LoginControllerJSON extends AbstractJsonController {
                 System.out.println("LoginControllerJSON.JSON: " + json);
                 return json;
                 
-        
-                //return new Gson().toJson(tweets);
-                /*
-                if (miUsuario.equals("emilio")){
-                        return "acceso ok"; 
-                }*/
         }
         
         

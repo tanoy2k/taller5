@@ -2,9 +2,9 @@ package ar.com.twitter.model;
 
 public class Correlatividades {
 	private int materia;
-	private String descripcionmateria;
-	private int materia_correlativa;
-	private String descripcion_materia_correlativa;
+	private String descripcionMateria;
+	private int materiaCorrelativa;
+	private String descripcionMateriaCorrelativa;
 	public int getMateria() {
 		return materia;
 	}
@@ -12,23 +12,23 @@ public class Correlatividades {
 		this.materia = materia;
 	}
 	public String getDescripcionmateria() {
-		return descripcionmateria;
+		return descripcionMateria;
 	}
 	public void setDescripcionmateria(String descripcionmateria) {
-		this.descripcionmateria = descripcionmateria;
+		this.descripcionMateria = descripcionmateria;
 	}
 	public int getMateria_correlativa() {
-		return materia_correlativa;
+		return materiaCorrelativa;
 	}
 	public void setMateria_correlativa(int materia_correlativa) {
-		this.materia_correlativa = materia_correlativa;
+		this.materiaCorrelativa = materia_correlativa;
 	}
 	public String getDescripcion_materia_correlativa() {
-		return descripcion_materia_correlativa;
+		return descripcionMateriaCorrelativa;
 	}
 	public void setDescripcion_materia_correlativa(
 			String descripcion_materia_correlativa) {
-		this.descripcion_materia_correlativa = descripcion_materia_correlativa;
+		this.descripcionMateriaCorrelativa = descripcion_materia_correlativa;
 	}
 	
 }

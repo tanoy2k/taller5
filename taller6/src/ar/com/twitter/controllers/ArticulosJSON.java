@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ArticulosJSON {
 	
 //	@RequestMapping("/t/{parametro}")
-    public void welcomeHandler(@PathVariable String articuloId) {System.out.print("puto home: " + articuloId);
+    public void welcomeHandler(@PathVariable String articuloId) {System.out.print(" home: " + articuloId);
     	
     }
 	 @RequestMapping(value="{parametro}", method=RequestMethod.GET)

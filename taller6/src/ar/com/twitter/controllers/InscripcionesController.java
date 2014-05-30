@@ -50,7 +50,7 @@ public class InscripcionesController extends AbstractJsonController {
 		
 		//Singleton solo a modo de ejemplo Emilio...
 		Session sesion = Session.getInstance();
-		sesion.setUsuario(Integer.toString(28)); 
+		sesion.setUsuario("fabio"); // (Integer.toString(28)); 
 //		Gson gson = new Gson(); 
 //		String json = gson.toJson(sesion); 
 //		System.out.println("InsripcionesController.toJSON: " + json);

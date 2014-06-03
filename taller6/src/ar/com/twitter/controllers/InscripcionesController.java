@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ import ar.com.twitter.model.Session;
 public class InscripcionesController extends AbstractJsonController {
 	
 	@RequestMapping(value = "/inscribirfinal", method = RequestMethod.GET, headers = "Accept=*/*")
-	public @ResponseBody String inscribir(HttpServletRequest req, HttpServletResponse response) throws IOException, SQLException {
+	public @ResponseBody String inscribir(HttpServletRequest req, HttpServletResponse response,HttpSession ses) throws IOException, SQLException {
 		super.setHeaders(response);
 	
 		System.out.println("InscripcionesController.InterfaceInscripcion.ingreso OK");
@@ -48,14 +49,7 @@ public class InscripcionesController extends AbstractJsonController {
 			System.out.println("LoginControllerJson.InterfaceInscripcion.inscribir == false");
 		}		
 		
-		//Singleton solo a modo de ejemplo Emilio...
-		Session sesion = Session.getInstance();
-		sesion.setUsuario("fabio"); // (Integer.toString(28)); 
-//		Gson gson = new Gson(); 
-//		String json = gson.toJson(sesion); 
-//		System.out.println("InsripcionesController.toJSON: " + json);
-		
-		System.out.println("InsripcionesController.toJSON: " + gson.toJson(alumno));
+
  		return json;
 		
 	

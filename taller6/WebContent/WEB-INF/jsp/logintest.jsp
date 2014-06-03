@@ -30,7 +30,7 @@
 <input id="loginPassword" name="loginPassword" type="password"/>
 <br><button id="btnIngresar">Ingresar</button>
  
- <br><button id="btn2Ingresar">IngresarEmilio</button>
+ 
  <br><button id="btn3logout">Logout</button> 
 </body>
 </html> 

@@ -1,14 +1,16 @@
 package ar.com.twitter.model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.com.twitter.dao.FinalesDAO;
 import sun.util.calendar.BaseCalendar.Date;
 
 public class Finales {
 private int finalId;
 private int materiaId;
-private Date fecha;
+private java.util.Date fecha;
 private List <Profesores> profesores;
 public int getFinalId() {
 	return finalId;
@@ -22,12 +24,10 @@ public int getMateriaId() {
 public void setMateriaId(int materiaId) {
 	this.materiaId = materiaId;
 }
-public Date getFecha() {
+public Comparable<java.util.Date> getFecha() {
 	return fecha;
 }
-public void setFecha(Date fecha) {
-	this.fecha = fecha;
-}
+
 public List<Profesores> getProfesores() {
 	return profesores;
 }
@@ -35,12 +35,15 @@ public void setProfesores(List<Profesores> profesores) {
 	this.profesores = profesores;
 }
 
-private ArrayList <Finales> getFinales()
+public ArrayList <Finales> getFinales() throws SQLException
 {
 	ArrayList <Finales> listaFinales=new ArrayList <Finales>();
-	
-	
+	FinalesDAO fDAO=new FinalesDAO();
+	listaFinales=fDAO.getFinalesDAO();
 	return listaFinales;
+}
+public void setFecha(java.sql.Date date) {
+	this.fecha = date;
 }
 
 

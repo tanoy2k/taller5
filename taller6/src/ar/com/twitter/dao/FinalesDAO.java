@@ -16,11 +16,20 @@ public class FinalesDAO {
 	public ArrayList<Finales> getFinalesDAO() throws SQLException {
 		datos acceso = new datos();
 		acceso.conectar();
-		String SQL = "SELECT * from FINALES";
+		String SQL = "select * from FINALES F INNER JOIN MATERIAS M ON F.MATERIA_ID=M.ID";
 		Statement stmt = acceso.con.createStatement();
 		rs = stmt.executeQuery(SQL);
+		ArrayList <Finales> listaFinales = new ArrayList<Finales>();
+		while (rs.next())
+		{
+		Finales fin = new Finales();
+		fin.setFinalId(rs.getInt("FINAL_ID"));
+		fin.setMateriaId(rs.getInt("MATERIA_ID"));
+		fin.setFecha(rs.getDate("FECHA"));
+		listaFinales.add(fin);
+		}
 		
-		return null;
+		return listaFinales;
 	}
 	
 	public ArrayList<Profesores> getProfesoresPorFinal() throws SQLException {

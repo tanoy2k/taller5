@@ -27,12 +27,12 @@ public class FinalesDAO {
 			fin.setFinalId(rs.getInt("FINAL_ID"));
 			fin.setMateriaId(rs.getInt("MATERIA_ID"));
 			fin.setFecha(rs.getDate("FECHA"));
-			fId=(rs.getInt("FINAL_ID"));
+			fId = (rs.getInt("FINAL_ID"));
 			fin.setProfesores(getProfesoresPorFinal(fId));
 			listaFinales.add(fin);
-			
+
 		}
-	
+
 		return listaFinales;
 	}
 
@@ -44,19 +44,18 @@ public class FinalesDAO {
 				+ "from profesores prof "
 				+ "inner join PERSONAS per on prof.PERSONA_ID=per.PERSONA_ID "
 				+ "inner join PROFESORESPORFINAL pfin ON prof.PERSONA_ID=pfin.PROFESOR_ID "
-				+ "where pfin.FINAL_ID="+finalId;
+				+ "where pfin.FINAL_ID=" + finalId;
 		Statement stmt = acceso.con.createStatement();
 		rs2 = stmt.executeQuery(SQL);
-		ArrayList <Profesores> profeList = new ArrayList <Profesores>();
-		while (rs2.next())
-		{
+		ArrayList<Profesores> profeList = new ArrayList<Profesores>();
+		while (rs2.next()) {
 			Profesores profe = new Profesores();
+			profe.setTitulo(rs2.getString("TITULO"));
 			profe.setNombre(rs2.getString("NOMBRE"));
+			profe.setApellido(rs2.getString("APELLIDO"));
 			profeList.add(profe);
 		}
-				
-		
-		
+
 		return profeList;
 
 	}

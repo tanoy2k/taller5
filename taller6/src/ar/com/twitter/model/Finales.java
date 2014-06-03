@@ -11,7 +11,7 @@ public class Finales {
 private int finalId;
 private int materiaId;
 private java.util.Date fecha;
-private List <Profesores> profesores;
+private ArrayList <Profesores> profesores;
 public int getFinalId() {
 	return finalId;
 }
@@ -28,13 +28,15 @@ public Comparable<java.util.Date> getFecha() {
 	return fecha;
 }
 
-public List<Profesores> getProfesores() {
+
+
+
+public ArrayList<Profesores> getProfesores() {
 	return profesores;
 }
-public void setProfesores(List<Profesores> profesores) {
+public void setProfesores(ArrayList<Profesores> profesores) {
 	this.profesores = profesores;
 }
-
 public ArrayList <Finales> getFinales() throws SQLException
 {
 	ArrayList <Finales> listaFinales=new ArrayList <Finales>();

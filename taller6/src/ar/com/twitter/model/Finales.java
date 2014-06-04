@@ -2,10 +2,7 @@ package ar.com.twitter.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import ar.com.twitter.dao.FinalesDAO;
-import sun.util.calendar.BaseCalendar.Date;
 
 public class Finales {
 private int finalId;

@@ -44,7 +44,7 @@ public class InscripcionesController extends AbstractJsonController {
 
 		// Prueba de InterfazMateria()
 		InscripcionFinal inscripcionFinal = new InscripcionFinal();
-		boolean habilitado = inscripcionFinal.inscribir(28213672);
+		boolean habilitado = inscripcionFinal.validarMateria(28213672);
 
 		if (habilitado) {
 			System.out

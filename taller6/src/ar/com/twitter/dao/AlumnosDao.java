@@ -17,7 +17,7 @@ public class AlumnosDao {
 		datos acceso= new datos();
 		acceso.conectar();
 		String SQL = "SELECT DNI,NOMBRE,APELLIDO FROM ALUMNOS A,PERSONAS P WHERE A.PERSONA_ID=P.PERSONA_ID";  
-		ArrayList<Alumno> alumnos = lala(acceso, SQL);
+		ArrayList<Alumno> alumnos = obtenerDatosAlumnos(acceso, SQL);
 				
 		return alumnos;
 		
@@ -29,13 +29,13 @@ public class AlumnosDao {
 		acceso.conectar();
 		System.out.println("AlumnosDao.obtenerAlumno("+ alumnoId +")");//
 		String SQL = "SELECT dni,apellido,nombre from alumnos where dni = " + alumnoId + "";  
-		ArrayList<Alumno> alumnos = lala(acceso, SQL);
+		ArrayList<Alumno> alumnos = obtenerDatosAlumnos(acceso, SQL);
 		
 		return alumnos;
 	}
 
 
-	private ArrayList<Alumno> lala(datos acceso, String SQL)
+	private ArrayList<Alumno> obtenerDatosAlumnos(datos acceso, String SQL)
 			throws SQLException {
 		Statement stmt = acceso.con.createStatement(); 
 		rs = stmt.executeQuery(SQL);

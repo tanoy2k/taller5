@@ -12,9 +12,9 @@ public class FinalesDAO {
 
 	private ResultSet rs;
 	private ResultSet rs2;
+	public datos acceso = new datos();
 
 	public ArrayList<Finales> getFinalesDAO() throws SQLException {
-		datos acceso = new datos();
 		acceso.conectar();
 		String SQL = "select * from FINALES F INNER JOIN MATERIAS M ON F.MATERIA_ID=M.ID";
 		Statement stmt = acceso.con.createStatement();
@@ -30,24 +30,24 @@ public class FinalesDAO {
 			fin.setLlamado(rs.getInt("LLAMADO"));
 			fin.setMateriaDescripcion(rs.getString("DESCRIPCION"));
 			fId = (rs.getInt("FINAL_ID"));
-			lId=(rs.getInt("LLAMADO"));
-			fin.setProfesores(getProfesoresPorFinal(fId,lId));
+			lId = (rs.getInt("LLAMADO"));
+			fin.setProfesores(getProfesoresPorFinal(fId, lId));
 			listaFinales.add(fin);
 
 		}
-
+		acceso.con.close();
 		return listaFinales;
 	}
 
-	public ArrayList<Profesores> getProfesoresPorFinal(int finalId,int llamadoId)
-			throws SQLException {
-		datos acceso = new datos();
-		acceso.conectar();
+	public ArrayList<Profesores> getProfesoresPorFinal(int finalId,
+			int llamadoId) throws SQLException {
+
 		String SQL = "select TITULO,NOMBRE,APELLIDO "
 				+ "from profesores prof "
 				+ "inner join PERSONAS per on prof.PERSONA_ID=per.PERSONA_ID "
 				+ "inner join PROFESORESPORFINAL pfin ON prof.PERSONA_ID=pfin.PROFESOR_ID "
-				+ "where pfin.FINAL_ID=" + finalId + " AND pfin.LLAMADO="+llamadoId;
+				+ "where pfin.FINAL_ID=" + finalId + " AND pfin.LLAMADO="
+				+ llamadoId;
 		Statement stmt = acceso.con.createStatement();
 		rs2 = stmt.executeQuery(SQL);
 		ArrayList<Profesores> profeList = new ArrayList<Profesores>();

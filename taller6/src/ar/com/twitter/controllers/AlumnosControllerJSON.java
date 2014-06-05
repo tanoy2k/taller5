@@ -17,8 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.com.twitter.dao.*;
 import ar.com.twitter.model.Alumno;
-import ar.com.twitter.model.Session;
-
 import com.google.gson.Gson;
 
 @Controller

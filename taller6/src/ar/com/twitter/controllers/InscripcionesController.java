@@ -5,6 +5,7 @@ package ar.com.twitter.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
+import ar.com.twitter.dao.InscripcionDAO;
 import ar.com.twitter.model.Alumno;
 import ar.com.twitter.model.Finales;
-import ar.com.twitter.model.InscripcionFinal;
 import ar.com.twitter.model.Session;
 
 //import com.google.gson.Gson;
@@ -33,28 +34,34 @@ public class InscripcionesController extends AbstractJsonController {
 			HttpSession ses) throws IOException, SQLException {
 		super.setHeaders(response);
 
-		System.out
-				.println("InscripcionesController.InterfaceInscripcion.ingreso OK");
+		System.out.println("InscripcionesController.InterfaceInscripcion.ingreso OK");
+		String usuarioSesion = (String) ses.getAttribute("usuario");
+		long alumnoDni =  Long.valueOf(usuarioSesion) ;
+		int materiaId = Integer.valueOf(req.getParameter("matid") ) ;
+		int finalId = Integer.valueOf(req.getParameter("finid") ) ;
+		int llamadoId = Integer.valueOf(req.getParameter("llamid") ) ;
+		
+		InscripcionDAO inscDao = new InscripcionDAO();
+		inscDao.setAlumnoDni(alumnoDni);
+		inscDao.setMateriaId(materiaId);
+		inscDao.setLlamadoId(llamadoId);
+		inscDao.setFinalId(finalId);
+		
+		boolean materiaHabilitada = inscDao.validarMateria();
+		System.out.println("materiaHabilitada: " + materiaHabilitada);
+		
+		
+		if(materiaHabilitada){
+			inscDao.inscribir();
+		};
+		
+	    HashMap<String, Boolean> hm = new HashMap<String, Boolean>();
+	    hm.put("estadoMateria",materiaHabilitada);
+	
 
-		// Emilio, te paso ejemplo para tomar parametros from JSON
-		final String json = req.getParameter("json");
-		final Gson gson = new Gson();
-		// a modo de ejemplo a un objeto alumno
-		final Alumno alumno = gson.fromJson(json, Alumno.class);
-
-		// Prueba de InterfazMateria()
-		InscripcionFinal inscripcionFinal = new InscripcionFinal();
-		boolean habilitado = inscripcionFinal.validarMateria(28213672);
-
-		if (habilitado) {
-			System.out
-					.println("InscripcionesController.InterfaceInscripcion.inscribir == true");
-		} else {
-			System.out
-					.println("LoginControllerJson.InterfaceInscripcion.inscribir == false");
-		}
-
-		return json;
+	    Gson gson = new Gson();
+	    
+		return gson.toJson(hm);
 
 	}
 

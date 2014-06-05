@@ -9,9 +9,7 @@ import ar.com.twitter.model.Alumno;
 
 public class AlumnosDao {
 
-	public static ResultSet rs;
-	private ArrayList Alumnos;
-	
+	private static ResultSet rs;
 
 	public ArrayList<Alumno> obtenerAlumnos() throws SQLException {
 		datos acceso= new datos();
@@ -19,16 +17,14 @@ public class AlumnosDao {
 		String SQL = "SELECT DNI,NOMBRE,APELLIDO FROM ALUMNOS A,PERSONAS P WHERE A.PERSONA_ID=P.PERSONA_ID";  
 		ArrayList<Alumno> alumnos = obtenerDatosAlumnos(acceso, SQL);
 				
-		return alumnos;
-		
+		return alumnos;		
 	}
-
 
 	public ArrayList<Alumno> obtenerAlumno(String alumnoId) throws SQLException {
 		datos acceso= new datos();
 		acceso.conectar();
 		System.out.println("AlumnosDao.obtenerAlumno("+ alumnoId +")");//
-		String SQL = "SELECT dni,apellido,nombre from alumnos where dni = " + alumnoId + "";  
+		String SQL = "SELECT dni,apellido,nombre from ALUMNOS A,PERSONAS P WHERE A.PERSONA_ID=P.PERSONA_ID and A.dni = " + alumnoId + "";  
 		ArrayList<Alumno> alumnos = obtenerDatosAlumnos(acceso, SQL);
 		
 		return alumnos;

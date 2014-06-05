@@ -1,9 +1,11 @@
 package ar.com.twitter.model;
 
-public interface InterfaceInscripcion {
-	public boolean validarMateria(int alumnoDni);
+import java.sql.SQLException;
 
-	//public boolean inscribir(int alumnoDni);
+public interface InterfaceInscripcion {
+	public boolean validarMateria(long alumnoDni,int materiaId) throws SQLException;
+
+	//public boolean inscribir(long alumnoDni,int materiaId);
 }
 
 

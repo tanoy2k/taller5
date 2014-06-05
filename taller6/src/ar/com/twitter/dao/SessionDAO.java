@@ -33,7 +33,7 @@ public class SessionDAO {
 	public boolean GetSessionActivaDAO(String hash) throws SQLException{
 		datos Conex = new datos();
 		Conex.conectar();
-		String SQL="SELECT COUNT()* FROM SESSION  WHERE HASH='"+hash+"'";
+		String SQL="SELECT COUNT(*) FROM SESSION  WHERE HASH='"+hash+"'";
 		Statement stmt=Conex.con.createStatement();
 		stmt.executeQuery(SQL);
 		rs.next();

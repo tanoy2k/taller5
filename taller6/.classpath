@@ -13,5 +13,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/resources/js/alumnos.js"/>
+	<classpathentry kind="lib" path="WebContent/resources/js/finales.js"/>
+	<classpathentry kind="lib" path="WebContent/resources/js/materias.js"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

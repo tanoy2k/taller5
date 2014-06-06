@@ -53,10 +53,10 @@ public class InscripcionDAO {
 		datos acceso = new datos();
 		acceso.conectar();
 		String SQL = "select ESTADOMATERIA from MATERIASPORALUMNO  m where m.DNI ="
-				+ this.getAlumnoDni()
-				+ "and MATERIA in("
-				+ "select MATERIA_CORRELATIVA from CORRELATIVIDADES c where"
-				+ "MATERIA = " + this.getMateriaId() + ")";
+				+   this.getAlumnoDni()
+				+ " and MATERIA in("
+				+ " select MATERIA_CORRELATIVA from CORRELATIVIDADES c where"
+				+ " MATERIA = " + this.getMateriaId() + ")";
 		Statement stmt = acceso.con.createStatement();
 		rs = stmt.executeQuery(SQL);
 

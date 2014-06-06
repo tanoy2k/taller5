@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 
 import ar.com.twitter.dao.InscripcionDAO;
-import ar.com.twitter.model.Alumno;
 import ar.com.twitter.model.Finales;
-import ar.com.twitter.model.Session;
 
 //import com.google.gson.Gson;
 
@@ -47,8 +46,22 @@ public class InscripcionesController extends AbstractJsonController {
 		inscDao.setLlamadoId(llamadoId);
 		inscDao.setFinalId(finalId);
 		
-		boolean materiaHabilitada = inscDao.validarMateria();
-		System.out.println("materiaHabilitada: " + materiaHabilitada);
+		boolean materiaHabilitada = true;
+		int estadoMateria = inscDao.getEstadoMateria();
+		if (estadoMateria == 2){
+			List<Integer> estadoCorrelativas = inscDao.getEstadoCorrelativas();			
+		    for (Integer estadoCorrelativa : estadoCorrelativas) {
+		        System.out.println(estadoCorrelativa);
+		        if (estadoCorrelativa < 3 ){
+		        	materiaHabilitada = false;
+		        	break; // xq no?
+		        }
+		    }			
+		}else{
+			materiaHabilitada = false;
+		}
+		
+		System.out.println("materiaHabilitada: " + materiaHabilitada );
 		
 		
 		if(materiaHabilitada){
@@ -57,8 +70,6 @@ public class InscripcionesController extends AbstractJsonController {
 		
 	    HashMap<String, Boolean> hm = new HashMap<String, Boolean>();
 	    hm.put("estadoMateria",materiaHabilitada);
-	
-
 	    Gson gson = new Gson();
 	    
 		return gson.toJson(hm);

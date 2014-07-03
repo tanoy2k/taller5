@@ -47,37 +47,61 @@ var Final = function(finalJson){// simulo el objeto en javascript
 	this.getProfesoresDeLaMesa = function(){
 		var profesoresDeLaMesa = new Array();
 		$.each(self.profesores,function(i,profesor){
-			profesoresDeLaMesa.push(profesor.apellido + ", " + profesor.nombre + "; ");
+			profesoresDeLaMesa.push([profesor.apellido , " - " , profesor.nombre , "; "].join(""));
+			//profesoresDeLaMesa.push(profesor.join(;));
 		});
 		return profesoresDeLaMesa;
 	};
 	// agrego un botón, a modo de pruebas, que tenga el action 'inscribir'
 	this.enrollButton = function(id){
-		var myEnrollButton = $('<button/>')
-							.attr('type','button')
-							.attr('id',id)
-							.text('Inscribir a final')
-							.addClass('btn')
-							.click(function(){
-								$.getJSON('inscribirfinal.htm?matid='+ self.getMateriaId() +'&finid='+self.getFinalId()+'&llamid='+self.getLlamadoId(), //<--pruebaaaaa 
-											function(data){
-										    	console.log(' inscribirFinal: '+JSON.stringify(data));
-										    }
-							    );
-							});
-		return $(myEnrollButton);
+	var myEnrollButton = $('<button/>')
+						.attr('type','button')
+						.attr('id',id)
+						.text('Inscribir a final')
+						.addClass('btn btn-info btn-sm')
+						.click(function(){
+							$.getJSON('inscribirfinal.htm?matid='+ self.getMateriaId() +'&finid='+self.getFinalId()+'&llamid='+self.getLlamadoId(), //<--pruebaaaaa 
+										function(miRta){
+								$.each(miRta,function(k,v){
+									switch(k) {
+								    case 'mensaje':
+								        //alert('Inscriptor dice:' + v);
+								        break;								
+								    case 'inscripcion':
+								        if (v=='false'){ //<--esta al rever por PRUEBA
+								        	$('#'+id).text('Inscripto a final');
+								        	$('#'+id).attr('disabled',true);
+								        	$('#'+id).attr('class','btn btn-sm');
+								        	$('#'+id).effect( "pulsate", "fast" );
+								        }else{
+								        	$('#'+id).fadeIn('pulsate');
+								        	alert('no pude inscribirte, capo');
+								        }
+								        break;
+								    default:
+								        //alert('default');
+								    	break;
+								}});								
+//									    	window.dataEnroll = data;
+									    	console.log(' inscribirFinal: '+JSON.stringify(miRta));
+									    }
+						    );
+						});
+
+
+	return $(myEnrollButton);
 	};
 		
 	// Le doy conocimiento a mi final de còmo mostrarse en un row de una tabla...
 	this.getRow = function(){
-       	var rowHtml = $('<tr><td>'
-       		        + self.getFechaFinal() 
-       		        +'</td><td>'
-       		        + self.getMateriaDescripcion()
-       		        +'</td><td>'
-       		        + self.getProfesoresDeLaMesa()
-       		        + '</td><td class="action">'
-       		        +'</td></tr>');
+       	var rowHtml = $(['<tr><td>'
+       		        , self.getFechaFinal() 
+       		        ,'</td><td>'
+       		        , self.getMateriaDescripcion()
+       		        ,'</td><td>'
+       		        , self.getProfesoresDeLaMesa()
+       		        , '</td><td class="action">'
+       		        ,'</td></tr>'].join(""));
        	//Agrego un botòn con la accion Inscribir
        	var rowId = "enrollButton_" + self.finalId + "_" + self.llamadoId;
        	$(rowHtml).find(".action")
@@ -88,7 +112,7 @@ var Final = function(finalJson){// simulo el objeto en javascript
 
 var Finales = function(){
 	var self = this;// <-- por convencion
-	this.finales = new Array(); // defino que contendr� una collection ( object alumno )
+	this.finales = new Array(); // defino que contendr� una collection ( object finales )
 	this.addFinal = function(ffinal){
 		self.finales.push(ffinal);
 	};
@@ -116,15 +140,19 @@ var Finales = function(){
 //		// Creo, en este caso la tabla como elem del DOM ( document object model , estructura jerarquica del documento en el navegador web.)
 		
 		$('#tablaFinales').remove();
-		var tbl = $("<table/>").attr("id","tablaFinales");
+//		var tbl = $("<table/>").attr("id","tablaFinales");
 		var theadHtml = '<tr><th>Fecha</th><th>Materia</th><th>Profesores de la mesa</th><th>Acciones</th></tr>';		
-		var thead = $('<thead/>').attr('class','tablaFinalesEncabezado');
-		var tbody = $('<tbody/>').attr('class','tablaFinalesCuerpo');
-		$("#contenedor").append(tbl);		
-		$('#tablaFinales').append(thead);
-		$('#tablaFinales').append(tbody);
-		$('#tablaFinales').find('thead').append(theadHtml);
-		$('#tablaFinales').addClass("table table-striped");
+//		var thead = $('<thead/>').attr('class','tablaFinalesEncabezado');
+//		var tbody = $('<tbody/>').attr('class','tablaFinalesCuerpo');
+//		$("#contenedor").append(tbl);		
+//		$('#tablaFinales').append(thead);
+//		$('#tablaFinales').append(tbody);
+//		$('#tablaFinales').find('thead').append(theadHtml);
+//		$('#tablaFinales').addClass("table table-striped");
+		//var tbl = window.viewManager.getGenericTable("<tr><th>Fecha</th><th>Materia</th><th>Profesores de la mesa</th><th>Acciones</th></tr>","tablaFinales");
+		viewManager.configTableize(theadHtml,"tablaFinales"); //window.viewManager.makeTableGeneric("<tr><td>sfsdf</td></tr>","tablita");
+		console.log(viewManager.tableize);
+		$("#contenedor").append($(viewManager.tableize));
 		
 		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Alumno
 	    $.each(self.finales, function(i,ffinal){

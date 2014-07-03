@@ -53,14 +53,14 @@ var Materia = function(materiaJson) {// simulo el objeto en javascript
 	// Le doy conocimiento a mi alumno de còmo mostrarse en un row de una
 	// tabla...
 	this.getRow = function() {
-		var rowHtml = '<tr><td>' + self.getAnio() 
-					+ '</td><td>'
-					+ self.getCuatrimestre() 
-					+ '</td><td>'
-					+ self.getMateriaDescripcion() 
-					+ '</td><td>'
-					+ self.getMateriaId() 
-					+ '</td></tr>';
+		var rowHtml = ['<tr><td>',  self.getAnio() 
+					, '</td><td>'
+					, self.getCuatrimestre() 
+					, '</td><td>'
+					, self.getMateriaDescripcion() 
+					, '</td><td>'
+					, self.getMateriaId() 
+					, '</td></tr>'].join("");
 		return rowHtml;
 	};
 };

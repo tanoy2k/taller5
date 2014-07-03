@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import ar.com.twitter.dao.*;
 import ar.com.twitter.model.Login;
@@ -48,4 +49,12 @@ public class LoginService {
 	
 	}
 
+	
+	@RequestMapping(value = "/login3", method = RequestMethod.GET, headers = "Accept=*/*")
+	public ModelAndView login3(HttpServletResponse response) {
+		return new ModelAndView("login3");
+	}
+	
+	
+	
 }

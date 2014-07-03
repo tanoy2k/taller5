@@ -3,7 +3,6 @@ package ar.com.twitter.controllers;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,11 +15,11 @@ public class LoginController {
 		return new ModelAndView("logintest");
 	}
 	
+	@RequestMapping(value = "/login4", method = RequestMethod.GET, headers = "Accept=*/*")
+	public ModelAndView login4(HttpServletResponse response) {
+		return new ModelAndView("login4");
+	}
 	
-//	@RequestMapping(value = "/main", method = RequestMethod.GET, headers = "Accept=*/*")
-//	public ModelAndView main(HttpServletResponse response) {
-//		return new ModelAndView("main");
-//	}	
 	
 	
 	

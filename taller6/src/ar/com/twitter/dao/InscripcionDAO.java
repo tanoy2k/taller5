@@ -48,15 +48,15 @@ public class InscripcionDAO {
 
 	private int materiaId;
 
-	public List<Integer> getEstadoCorrelativas() throws SQLException {
+	public List<Integer> getEstadoCorrelativas(long alumnoDni, int materiaId) throws SQLException {
 		List<Integer> listEstadoCorrelativas = new ArrayList<Integer>();
 		datos acceso = new datos();
 		acceso.conectar();
 		String SQL = "select ESTADOMATERIA from MATERIASPORALUMNO  m where m.DNI ="
-				+   this.getAlumnoDni()
+				+   alumnoDni
 				+ " and MATERIA in("
 				+ " select MATERIA_CORRELATIVA from CORRELATIVIDADES c where"
-				+ " MATERIA = " + this.getMateriaId() + ")";
+				+ " MATERIA = " + materiaId + ")";
 		Statement stmt = acceso.con.createStatement();
 		rs = stmt.executeQuery(SQL);
 
@@ -68,12 +68,12 @@ public class InscripcionDAO {
 
 	}
 
-	public int getEstadoMateria() throws SQLException {
+	public int getEstadoMateria(int materiaId) throws SQLException {
 		int estadoMateria = 0;
 		datos acceso = new datos();
 		acceso.conectar();
 		String SQL = "select ESTADOMATERIA from MATERIASPORALUMNO where MATERIA = "
-				+ this.getMateriaId();
+				+ materiaId;
 		Statement stmt = acceso.con.createStatement();
 		rs = stmt.executeQuery(SQL);
 
@@ -83,12 +83,12 @@ public class InscripcionDAO {
 		return estadoMateria;
 	}
 
-	public void inscribir() throws SQLException {
+	public void inscribir(long alumnoDni, int llamadoId, int finalId) throws SQLException {
 		// TODO Auto-generated method stub
 		datos acceso = new datos();
 		acceso.conectar();
-		String SQL = "INSERT INTO INSCRIPCIONES VALUES (" + this.getAlumnoDni()
-				+ "," + this.getLlamadoId() + "," + this.getFinalId()
+		String SQL = "INSERT INTO INSCRIPCIONES VALUES (" + alumnoDni
+				+ "," + llamadoId + "," + finalId
 				+ ", getdate(), NULL )";
 		Statement stmt = acceso.con.createStatement();
 		stmt.executeUpdate(SQL);

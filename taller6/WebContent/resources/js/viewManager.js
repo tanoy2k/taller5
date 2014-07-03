@@ -1,7 +1,8 @@
 $(document).ready(function() {
-	var viewManager = new ViewManager;
+	window.viewManager = new ViewManager;
 	viewManager.init();
 });
+
 
 
 var ViewManager = function(ambito){
@@ -12,20 +13,38 @@ var ViewManager = function(ambito){
 	this.includeRequired = function(scriptJs){
 		$.getScript( scriptJs )
 		  .done(function( script, textStatus ) {
-		    console.log( 'Cargando '+ scriptJs +': ' + textStatus );
+			  
+		    console.log( ['Cargando: ', scriptJs, textStatus].join(' ') );
 		  });
 	};
-	this.init = function(){
+	this.init = function(){ 
 		self.includeRequired('resources/js/alumnos.js');
 		self.includeRequired('resources/js/materias.js');
 		self.includeRequired('resources/js/finales.js');
 		self.mostrarInicio();
 	};
+	
+
+	
+	
+	this.tableize =  "";
+	
+	this.configTableize = function(thead,id){
+		alert(["viewManger dice..tableize!: ", thead ].join("") );
+		// tablizar?...ponele
+	    self.tableize = ["<table id='", id ,"'class='table table-striped'><thead>",thead,"</thead><tbody></tbody></table>"].join("");
+	};
+	
+	
 	// limpia el contenido de la vista
 	this.limpiar 	= function(){
 						$('#contenedor').html('');
 				   	};	
-	// mostrar inicio			   	
+    // view manager hace las cosas de la pantalla, 
+    // y bajo consejo de Dami‡n, crea un boton generic
+    this.makeButtonGeneric = ['<button type="button" id="generic" class="btn btn-info btn-sm">Generic Enroll</button>'].join(""); 				   	
+
+    // mostrar inicio			   	
 	this.mostrarInicio = function()
 	{
 		// agrego un bot√≥n, a modo de pruebas, que tenga el action 'listarMaterias'

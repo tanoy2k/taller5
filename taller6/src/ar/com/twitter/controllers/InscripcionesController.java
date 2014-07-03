@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 
 import ar.com.twitter.dao.InscripcionDAO;
 import ar.com.twitter.model.Finales;
+import ar.com.twitter.model.Inscripcion;
 
 //import com.google.gson.Gson;
 
@@ -40,16 +41,28 @@ public class InscripcionesController extends AbstractJsonController {
 		int finalId = Integer.valueOf(req.getParameter("finid") ) ;
 		int llamadoId = Integer.valueOf(req.getParameter("llamid") ) ;
 		
-		InscripcionDAO inscDao = new InscripcionDAO();
-		inscDao.setAlumnoDni(alumnoDni);
-		inscDao.setMateriaId(materiaId);
-		inscDao.setLlamadoId(llamadoId);
-		inscDao.setFinalId(finalId);
+//		InscripcionDAO inscDao = new InscripcionDAO();
+//		inscDao.setAlumnoDni(alumnoDni);
+//		inscDao.setMateriaId(materiaId);
+//		inscDao.setLlamadoId(llamadoId);
+//		inscDao.setFinalId(finalId);
+		
+		Inscripcion inscripcion = new Inscripcion(); 
+		inscripcion.setAlumnoId(alumnoDni);
+		inscripcion.setMateriaId(materiaId);
+		inscripcion.setLlamadoId(llamadoId);
+		inscripcion.setFinalId(finalId);
+		
 		
 		boolean materiaHabilitada = true;
-		int estadoMateria = inscDao.getEstadoMateria();
+		
+	    HashMap<String, String> hm = new HashMap<String, String>();
+
+		
+		
+		int estadoMateria = inscripcion.getEstadoMateria();
 		if (estadoMateria == 2){
-			List<Integer> estadoCorrelativas = inscDao.getEstadoCorrelativas();			
+			List<Integer> estadoCorrelativas = inscripcion.getEstadoCorrelativas();			
 		    for (Integer estadoCorrelativa : estadoCorrelativas) {
 		        System.out.println(estadoCorrelativa);
 		        if (estadoCorrelativa < 3 ){
@@ -59,17 +72,19 @@ public class InscripcionesController extends AbstractJsonController {
 		    }			
 		}else{
 			materiaHabilitada = false;
+		    hm.put("mensaje", "La cursada de la materia no esta aprobada");
 		}
 		
 		System.out.println("materiaHabilitada: " + materiaHabilitada );
+
 		
 		
 		if(materiaHabilitada){
-			inscDao.inscribir();
+			inscripcion.inscribir();
+		    hm.put("mensaje", "Ha sido inscripto correctamente");
 		};
 		
-	    HashMap<String, Boolean> hm = new HashMap<String, Boolean>();
-	    hm.put("estadoMateria",materiaHabilitada);
+	    hm.put("inscripcion", String.valueOf(materiaHabilitada));	    
 	    Gson gson = new Gson();
 	    
 		return gson.toJson(hm);

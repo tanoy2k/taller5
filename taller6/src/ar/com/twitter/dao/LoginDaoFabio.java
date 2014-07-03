@@ -30,9 +30,11 @@ public class LoginDaoFabio {
 		acceso.conectar();
 		//this.respuesta = "ERROR";
 		this.setRespuesta("ERROR LOGIN");
+		System.out.println("usuario: " + this.getUsuario() + " password: " + this.getPassword() );
 	try {
 		// TODO: EVITAR SQL INJECTION (OTRA METERIA)
-		String SQL = "SELECT usuario,password FROM usuarios where usuario = '" + this.usuario.toUpperCase() + "' and password = '" + this.password.toUpperCase() + "'";  
+		//String SQL = "SELECT usuario,password FROM usuarios where usuario = '" + this.usuario.toUpperCase() + "' and password = '" + this.password.toUpperCase() + "'";  
+		String SQL = "SELECT usuario,password FROM usuarios where usuario = '" + this.getUsuario() + "' and password = '" + this.getPassword() + "'";
 		 Statement stmt = acceso.con.createStatement(); 
 		 rs = stmt.executeQuery(SQL);
 		 

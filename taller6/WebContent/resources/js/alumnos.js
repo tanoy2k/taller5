@@ -40,13 +40,13 @@ var Alumno = function(alumnoJson){// simulo el objeto en javascript
 	};
 	// Le doy conocimiento a mi alumno de còmo mostrarse en un row de una tabla...
 	this.getRow = function(){
-       	var rowHtml = '<tr><td>'
-       				+ self.getNombre() 
-       				+ '</td><td>'
-       				+ self.getApellido() 
-       				+ '</td><td>' 
-       				+ self.getDNI()
-       				+ '</td></tr>';
+       	var rowHtml = ['<tr><td>'
+       				, self.getNombre() 
+       				, '</td><td>'
+       				, self.getApellido() 
+       				, '</td><td>' 
+       				, self.getDNI()
+       				, '</td></tr>'].join("");
        	return rowHtml;
 	};	
 };
@@ -79,17 +79,12 @@ var Alumnos = function(){
 	// el siguiente comportamiento de la clase Alumnos, es mostrar su estado actual en una tabla HTML:
 	this.mostrarEnTabla = function(){
 //		// Creo, en este caso la tabla como elem del DOM ( document object model , estructura jerarquica del documento en el navegador web.)
-		
+		var theadHtml = "<tr><th>Nombre</th><th>Apellido</th><th>DNI</th></tr>";
 		$('#tablaAlumnos').remove();
-		var tbl = $("<table/>").attr("id","tablaAlumnos");
-		var theadHtml = '<tr><th>Nombre</th><th>Apellido</th><th>DNI</th></tr>';		
-		var thead = $('<thead/>').attr('class','tablaAlumnosEncabezado');
-		var tbody = $('<tbody/>').attr('class','tablaAlumnosCuerpo');
+		var tbl = viewManager.makeTableGeneric;
+		$(tbl).attr("id","tablaAlumnos");
+		$(tbl).find('thead').append(theadHtml);
 		$("#contenedor").append(tbl);		
-		$('#tablaAlumnos').append(thead);
-		$('#tablaAlumnos').append(tbody);
-		$('#tablaAlumnos').find('thead').append(theadHtml);
-		$('#tablaAlumnos').addClass("table table-striped");
 		
 		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Alumno
 	    $.each(self.alumnos, function(i,alumno){
@@ -98,7 +93,7 @@ var Alumnos = function(){
         }); // fin .each
 	}; // fin mostrarEnTabla
 	
-	// la siguiente funcion es solo a modo de debug en la consola de chrome
+	// la siguiente funcion es solo a modo de debug en la consola de chrome 
 	this.listarAlumnosJson = function(){
 		console.log( "getAlumnosTodos(): "+  JSON.stringify(this.alumnos ) ); // ojo con console.log, en viejos navegadores no funciona 
 	};

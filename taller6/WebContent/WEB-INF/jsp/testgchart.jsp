@@ -7,16 +7,17 @@ google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
 function drawChart() {
 var data = google.visualization.arrayToDataTable([
-['Año', 'Ventas', 'Gastos'],
-['2004',  1000,      400],
-['2005',  1170,      460],
-['2006',  660,       1120],
-['2007',  1030,      540]
+['Cuatrimestre', 'Cursadas', 'Finales'],
+['1er',  6,      4],
+['2do',  7,      9],
+['3ro',  8,       10],
+['5to',  6,      8],
+['6to',  5,      9]
 ]);
  
 var options = {
-title: 'Informe de Ventas/Gastos',
-hAxis: {title: 'Años', titleTextStyle: {color: 'red'}}
+title: 'Promedio de cursadas y finales por cuatrimetre',
+hAxis: {title: 'Cuatrimetre', titleTextStyle: {color: 'red'}}
 };
  
 var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));

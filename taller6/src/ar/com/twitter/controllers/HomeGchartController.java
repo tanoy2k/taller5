@@ -42,9 +42,16 @@ public class HomeGchartController {
 		
 			return new ModelAndView("testgchart");
 			
-		//	return new ModelAndView("home");
-			
+		
 		}	
+		
+		@RequestMapping(value = "/testgchartstacked", method = RequestMethod.GET, headers = "Accept=*/*")
+		public ModelAndView testgchartstacked(HttpServletResponse response, HttpServletRequest request) {
+		
+			return new ModelAndView("testgchartstacked");
+			
+			
+		}			
 		
 	
 }

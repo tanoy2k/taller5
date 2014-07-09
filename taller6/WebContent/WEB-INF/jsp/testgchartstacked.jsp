@@ -1,4 +1,6 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <!-- ...Incluyo framework jQuery -->
+        <script type="text/javascript" src="./jquery-1.10.2.js"></script>
 <script type="text/javascript">
   google.load("visualization", "1", {packages:["corechart"]});
  
@@ -13,17 +15,27 @@
 
   google.setOnLoadCallback(drawChart1); 
   function drawChart1() {
-    var data = google.visualization.arrayToDataTable( dataSet );
+	  
+  	// defino la url al recurso que me entrega la data
+  	var url = 'chartdata.htm'; // no hace falta poner localhost a fuego!
+  	// usando jquery traemos el json desde esa url
+  	$.getJSON(url , function(dataSet){ 
+  		
+  		console.log(JSON.stringify(dataSet));
+  		
+  	    var data = new google.visualization.DataTable( dataSet );
 
-    var options = {
-      title: 'Stacked histogram\nTotals',
-      vAxis: {title: 'total', maxValue: 100},  // sets the maximum value
-      backgroundColor: {strokeWidth: 2 },  // to draw a nice box all around the chart
-      isStacked: 'true'                    //  = rowstacked in gnuplot
-    };
+  	    var options = {
+  	      title: 'Stacked histogram\nTotals',
+  	      vAxis: {title: 'total', maxValue: 100},  // sets the maximum value
+  	      backgroundColor: {strokeWidth: 2 },  // to draw a nice box all around the chart
+  	      isStacked: 'true'                    //  = rowstacked in gnuplot
+  	    };
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
-    chart.draw(data, options);
+  	    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+  	    chart.draw(data, options);
+	  
+  	});
   }
 
   // The second chart

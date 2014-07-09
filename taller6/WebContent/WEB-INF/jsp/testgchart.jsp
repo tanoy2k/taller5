@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Tutorial Monsters: Ejemplo en Google Charts</title>
+<title>Ejemplo en Google Charts</title>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 google.load("visualization", "1", {packages:["corechart"]});

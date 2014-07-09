@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+
 import ar.com.twitter.model.*;
 
 public class ChartsDAO {
@@ -11,7 +13,73 @@ public class ChartsDAO {
 	private static ResultSet rs;
 	datos acceso= new datos();
 	
-	
+	public List<Charts> getStats() throws SQLException {
+		
+		acceso.conectar(); // connect once;
+		
+		List<Charts> chartStats = new ArrayList<Charts>();
+		for (int cuatrimestreOrden = 1 ; cuatrimestreOrden <=6;cuatrimestreOrden++){
+			
+			Charts chart = new Charts();
+			String SQL = "SELECT COUNT (*) as CANTIDAD FROM inscripciones I  "
+					+ "INNER JOIN FINALES F "
+					+ "ON I.FINAL_ID=F.FINAL_ID "
+					+ "INNER JOIN MATERIAS M "
+					+ "ON M.ID=F.MATERIA_ID "
+					+ "WHERE F.LLAMADO=1 "
+					+ "and M.CUATRIMESTRE_ORDEN="+ cuatrimestreOrden
+					+ " and I.NOTA<>'A' "
+					+ " and I.NOTA>=4";
+			Statement stmt = acceso.con.createStatement();
+			rs = stmt.executeQuery(SQL);
+			while (rs.next())
+			{
+				chart.setAprobadosCant(rs.getInt("CANTIDAD"));
+			}
+	        rs.close();
+	        
+			// ausentes
+			SQL = "SELECT COUNT (*) as CANTIDAD FROM inscripciones I "
+				 	+ "INNER JOIN FINALES F "
+					+ "ON I.FINAL_ID=F.FINAL_ID "
+					+ "INNER JOIN MATERIAS M "
+					+ "ON M.ID=F.MATERIA_ID "
+					+ "WHERE F.LLAMADO=1 "
+					+ "and M.CUATRIMESTRE_ORDEN="+ cuatrimestreOrden
+					+ " and I.NOTA='A'";
+		    stmt = acceso.con.createStatement();
+			rs = stmt.executeQuery(SQL);
+			while (rs.next())
+			{
+				chart.setAusentesCant(rs.getInt("CANTIDAD"));
+			}
+	        rs.close();
+	        
+	        // desaprobados
+			SQL = "SELECT COUNT (*) as CANTIDAD FROM inscripciones I "
+				 	+ "INNER JOIN FINALES F "
+					+ "ON I.FINAL_ID=F.FINAL_ID "
+					+ "INNER JOIN MATERIAS M "
+					+ "ON M.ID=F.MATERIA_ID "
+					+ "WHERE F.LLAMADO=1 "
+					+ "and M.CUATRIMESTRE_ORDEN="+ cuatrimestreOrden
+					+ " and I.NOTA<>'A' "
+					+ " and I.NOTA<4";
+		    stmt = acceso.con.createStatement();
+			rs = stmt.executeQuery(SQL);
+			while (rs.next())
+			{
+				chart.setDesaprobadosCant(rs.getInt("CANTIDAD"));
+			}
+	        rs.close();
+	        chart.setCuatrimestreOrden(cuatrimestreOrden);
+	        chartStats.add(chart);
+		}
+        
+		return chartStats;
+		
+		
+	}
 		
 	
 	public int getAprobadosDAO (int cuatrimestreOrden) throws SQLException

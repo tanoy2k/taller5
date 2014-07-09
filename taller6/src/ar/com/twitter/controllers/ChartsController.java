@@ -41,17 +41,21 @@ public class ChartsController {
 			List<Charts> chartsList=new ArrayList <Charts>();
 
 		
-			for (int cuatrimestreOrden=1;cuatrimestreOrden<=6;cuatrimestreOrden++)
-			{
-				Charts chart = new Charts();
-				chart.setCuatrimestreOrden(cuatrimestreOrden);
-				chart.setAprobadosCant(chart.getAprobados(cuatrimestreOrden));
-				chart.setDesaprobadosCant(chart.getDesaprobados(cuatrimestreOrden));
-				chart.setAusentesCant(chart.getAusentes(cuatrimestreOrden));
-				chartsList.add(chart);
-				}
+//			for (int cuatrimestreOrden=1;cuatrimestreOrden<=6;cuatrimestreOrden++)
+//			{
+//				Charts chart = new Charts();
+//				chart.setCuatrimestreOrden(cuatrimestreOrden);
+//				chart.setAprobadosCant(chart.getAprobados(cuatrimestreOrden));
+//				chart.setDesaprobadosCant(chart.getDesaprobados(cuatrimestreOrden));
+//				chart.setAusentesCant(chart.getAusentes(cuatrimestreOrden));
+//				chartsList.add(chart);
+//				}
 		
-			json = gson.toJson(chartsList);
+			ChartsDAO chartDao = new ChartsDAO();
+			
+			
+			
+			json = gson.toJson(chartDao.getStats());
 					
 			
 		}

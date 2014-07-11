@@ -13,7 +13,7 @@ var ViewManager = function(ambito){
 	this.includeRequired = function(scriptJs){
 		$.getScript( scriptJs )
 		  .done(function( script, textStatus ) {
-			  
+			// join es mas performante que concatenar stings, recordar q un string es un arreglo de chars.. (?)  
 		    console.log( ['Cargando: ', scriptJs, textStatus].join(' ') );
 		  });
 	};
@@ -21,6 +21,7 @@ var ViewManager = function(ambito){
 		self.includeRequired('resources/js/alumnos.js');
 		self.includeRequired('resources/js/materias.js');
 		self.includeRequired('resources/js/finales.js');
+		//self.includeRequired('resources/js/charts.js'); 
 		self.mostrarInicio();
 	};
 	
@@ -47,7 +48,9 @@ var ViewManager = function(ambito){
     // mostrar inicio			   	
 	this.mostrarInicio = function()
 	{
-		// agrego un bot贸n, a modo de pruebas, que tenga el action 'listarMaterias'
+
+		
+		// agrego un bot贸n, a modo de pruebas, que tenga el action 'listarMaterias'... 
 		var btnGetMaterias = $('<button/>')
 				 			.attr('type','button')
 				 			.attr('id','getMaterias')
@@ -58,7 +61,7 @@ var ViewManager = function(ambito){
 				 			});
 		$(self.acciones).append(btnGetMaterias);
 		
-		// agrego un bot贸n, a modo de pruebas, que tenga el action 'listarMaterias'
+		// agrego un bot贸n, a modo de pruebas, que tenga el action 'listarMaterias'.... 
 		var btnGetAlumnos = $('<button/>')
 				 			.attr('type','button')
 				 			.attr('id','getAlumnos')
@@ -93,8 +96,26 @@ var ViewManager = function(ambito){
 			 						    }
 			 			    );
 			 			});
-		$(self.acciones).append(btnLogout);									
+		$(self.acciones).append(btnLogout);
+		
+		// agrego un bot贸n, a modo de pruebas, que tenga el action 'showStats()'
+		var btnStats = $('<button/>')
+			 			.attr('type','button')
+			 			.attr('id','logout')
+			 			.text('Mostrar Estad韘ticas')
+			 			.addClass('btn btn-primary btn-lg btn-block')
+			 			.click(function(){
+			 				self.mostrarEstadisticas();
+			 			});
+		$(self.acciones).append(btnStats);		
+		
 	}; // mostrar inicio	
+
+	this.mostrarEstadisticas = function(){
+		self.limpiar();
+		var myCharts = new Charts();
+		myCharts.showStats();
+	};
 	this.listarFinales = function(){
 		self.limpiar();
 		var misFinales = new Finales();

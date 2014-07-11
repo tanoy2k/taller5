@@ -65,17 +65,17 @@ var Final = function(finalJson){// simulo el objeto en javascript
 								$.each(miRta,function(k,v){
 									switch(k) {
 								    case 'mensaje':
-								        //alert('Inscriptor dice:' + v);
+								        alert('Inscriptor dice:' + v);
 								        break;								
 								    case 'inscripcion':
-								        if (v=='false'){ //<--esta al rever por PRUEBA
+								        if (v=='true'){ 
 								        	$('#'+id).text('Inscripto a final');
 								        	$('#'+id).attr('disabled',true);
 								        	$('#'+id).attr('class','btn btn-sm');
 								        	$('#'+id).effect( "pulsate", "fast" );
 								        }else{
 								        	$('#'+id).fadeIn('pulsate');
-								        	alert('no pude inscribirte, capo');
+								        	alert('No se pudo inscribir, consultar con administracion');
 								        }
 								        break;
 								    default:

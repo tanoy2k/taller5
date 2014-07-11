@@ -31,7 +31,7 @@ var ViewManager = function(ambito){
 	this.tableize =  "";
 	
 	this.configTableize = function(thead,id){
-		alert(["viewManger dice..tableize!: ", thead ].join("") );
+		//alert(["viewManger dice..tableize!: ", thead ].join("") );
 		// tablizar?...ponele
 	    self.tableize = ["<table id='", id ,"'class='table table-striped'><thead>",thead,"</thead><tbody></tbody></table>"].join("");
 	};
@@ -112,7 +112,7 @@ var ViewManager = function(ambito){
 	}; // mostrar inicio	
 
 	this.mostrarEstadisticas = function(){
-		self.limpiar();
+		//self.limpiar();
 		var myCharts = new Charts();
 		myCharts.showStats();
 	};

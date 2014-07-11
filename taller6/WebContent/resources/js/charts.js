@@ -83,14 +83,10 @@ var Charts = function(){
 			//self.mostrarEnTablaGchart();
     		console.log('finalizo getData ' + self.charts);
 
-    		// inicializo gcharts
-    		google.load("visualization", "1", {packages:["corechart"]});
-    		//google.load("visualization", "1", {packages:["table"]});
-    		google.setOnLoadCallback(self.mostrarGrafica()); 
 
+window.jsonChart = chartData;
     		
-    		
-			//self.mostrarGrafica('gchartColumnStacked', self.charts); 
+			self.mostrarGrafica('gchartColumnStacked', chartData); 
 			console.log('ok google');
 	  	});
 	};
@@ -98,25 +94,28 @@ var Charts = function(){
 	//this.		self.mostrarEnTablaGchart();
 	this.mostrarGrafica = function(type, chartData){
 		
-		console.log('dibujando la tabla...mostrarGrafica' + chartData);		
-		
-		switch (type){
-			case 'gchartColumnStacked':
+		console.log('dibujando la tabla...mostrarGrafica' + console.log(JSON.stringify(chartData)));		
+
+		// inicializo gcharts
+		google.load("visualization", "1", {packages:["corechart"]});
+		//google.load("visualization", "1", {packages:["table"]});
+		google.setOnLoadCallback(drawGrafica); 
+
 				
-
-				//var drawChart = function(chartData){
-					var data = new google.visualization.arrayToDataTable( chartData );
+		function drawGrafica(){
+			var chartData = window.jsonChart;
+				    console.log('json dataChart: '+ JSON.stringify(chartData));
+					var data = new google.visualization.DataTable( chartData );
 					// encabezado
-//					data.addColumn('string','cuatrimestre');
-//					data.addColumn('number','aprob');
-//					data.addColumn('number','desa');
-//					data.addColumn('number','ause');
-//					// data json, no uso jQuery para mantener el ejemplito...cuestión de tiempo, vio?
-//					for (var i = 0; i < chartData.length; i++) {
-//						data.addRow(['orden: ' + chartData[i].cuatrimestreOrden, chartData[i].aprobadosCant, chartData[i].desaprobadosCant,chartData[i].ausentesCant]);
-//					};
-					
-
+					data.addColumn('string','cuatrimestre');
+					data.addColumn('number','aprob');
+					data.addColumn('number','desa');
+					data.addColumn('number','ause');
+					// data json, no uso jQuery para mantener el ejemplito...cuestión de tiempo, vio?
+					for (var i = 0; i < chartData.length; i++) {
+						data.addRow(['orden: ' + chartData[i].cuatrimestreOrden, chartData[i].aprobadosCant, chartData[i].desaprobadosCant,chartData[i].ausentesCant]);
+					};
+				
 //			    		jQuery.each(chartData, function(chart, chartData){
 //					        data.addRow(['orden: ' + dataSet[i].cuatrimestreOrden, dataSet[i].aprobadosCant, dataSet[i].desaprobadosCant,dataSet[i].ausentesCant]);
 //					    });  //Fin JQuery.each
@@ -128,22 +127,18 @@ var Charts = function(){
 						  backgroundColor: {strokeWidth: 2 },  // to draw a nice box all around the chart
 						  isStacked: 'true'                    //  = rowstacked in gnuplot
 						};
-console.log('dibujando la tabla...' + data);
+// console.log('dibujando la tabla...' + data);
 
-
-					var chart = new google.visualization.ColumnChart(document.getElementById('pie')); // pasar a jquery
+                      
+					var chart = new google.visualization.ColumnChart(window.top.document.getElementById("pie")); //
 					chart.draw(data, options);
 
 				
 			
-				
-				break;
-			case 'gchartTable':
-				// here, code to draw a table using google chart api, comming soon
-				break;					
-			default:
-				// default code block
-		};			
+						
+			
+		};
+		
 	}; 		
 };	// fin Charts
 

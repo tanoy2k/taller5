@@ -68,13 +68,13 @@ public class InscripcionDAO {
 
 	}
 
-	public int getEstadoMateria(int materiaId,long alumnoId) throws SQLException {
+	public int getEstadoMateria(int materiaId, long alumnoDni) throws SQLException {
 		int estadoMateria = 0;
 		datos acceso = new datos();
 		acceso.conectar();
-		String SQL = "select ESTADOMATERIA from MATERIASPORALUMNO where MATERIA="
-				+ materiaId + " AND DNI=" + alumnoId;
-				
+		String SQL = "select ESTADOMATERIA from MATERIASPORALUMNO m where m.MATERIA = "
+				+ materiaId  + "and  m.DNI = "
+				+   alumnoDni;
 		Statement stmt = acceso.con.createStatement();
 		rs = stmt.executeQuery(SQL);
 
@@ -90,7 +90,7 @@ public class InscripcionDAO {
 		acceso.conectar();
 		String SQL = "INSERT INTO INSCRIPCIONES VALUES (" + alumnoDni
 				+ "," + llamadoId + "," + finalId
-				+ ", getdate(), NULL )";
+				+ ", getdate(), NULL, '' )";
 		Statement stmt = acceso.con.createStatement();
 		stmt.executeUpdate(SQL);
 

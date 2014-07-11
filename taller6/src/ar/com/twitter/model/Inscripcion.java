@@ -51,7 +51,7 @@ public class Inscripcion {
 	}
 	public int getEstadoMateria() throws SQLException {
 		InscripcionDAO inscDao = new InscripcionDAO();
-		return inscDao.getEstadoMateria(this.getMateriaId());
+		return inscDao.getEstadoMateria(this.getMateriaId(), this.getAlumnoId());// .getEstadoMateria(this.getMateriaId(), this.getAlumnoId());
 	}
 	public List<Integer> getEstadoCorrelativas() throws SQLException {
 		InscripcionDAO inscDao = new InscripcionDAO();

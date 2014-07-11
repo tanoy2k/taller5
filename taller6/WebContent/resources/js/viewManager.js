@@ -92,7 +92,9 @@ var ViewManager = function(ambito){
 			 			.click(function(){
 			 				$.getJSON('logout.htm', 
 			 							function(data){
-			 						    	console.log(' logout: '+JSON.stringify(data));
+			 						    	console.log(' logout: '+JSON.stringify(data)); // x debug en chrome unicamente, quitar
+			 						    	alert(data.msg);
+			 						    	window.top.location.href = data.redirect;
 			 						    }
 			 			    );
 			 			});
@@ -111,10 +113,41 @@ var ViewManager = function(ambito){
 		
 	}; // mostrar inicio	
 
+	
+this.drawChart = function() {
+
+//	var data = google.visualization.arrayToDataTable([
+//	['Cuatrimestre', 'Cursadas', 'Finales'],
+//	['1er',  6,      4],
+//	['2do',  7,      9],
+//	['3ro',  8,       10],
+//	['5to',  6,      8],
+//	['6to',  5,      9]
+//	]);
+//	 
+//	var options = {
+//	title: 'Promedio de cursadas y finales por cuatrimetre',
+//	hAxis: {title: 'Cuatrimetre', titleTextStyle: {color: 'red'}}
+//	};
+//	 
+//	var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+//	chart.draw(data, options);
+	var charts = new Charts();
+	charts.getStats();
+			  	
+}; 		
+	
+	
+	
 	this.mostrarEstadisticas = function(){
 		//self.limpiar();
-		var myCharts = new Charts();
-		myCharts.showStats();
+//		var myCharts = new Charts();
+//		myCharts.showStats();
+		
+//		google.load("visualization", "1", {packages:["corechart"], callback:drawChart});
+		
+		google.load("visualization", "1", {packages:["corechart"], callback:this.drawChart});		
+		
 	};
 	this.listarFinales = function(){
 		self.limpiar();

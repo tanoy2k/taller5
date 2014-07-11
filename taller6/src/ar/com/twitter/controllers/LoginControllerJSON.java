@@ -4,6 +4,7 @@ package ar.com.twitter.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -71,8 +72,11 @@ public class LoginControllerJSON extends AbstractJsonController {
 			HttpSession ses) throws IOException, SQLException {
 
 		ses.invalidate();
-		String m = "error";
-		return m;
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("msg", "La sesion ha finalizado.");
+		hm.put("redirect", "login4.htm");
+		Gson gson = new Gson();
+		return gson.toJson(hm);
 
 	}
 //	@RequestMapping(value = "/authloginpost", method = RequestMethod.POST, headers = "Accept=application/json")

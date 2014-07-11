@@ -31,6 +31,7 @@ public class MateriasDAO {
 			mat.setDescripcion(rs.getString("DESCRIPCION"));
 			mat.setAnio(rs.getInt("ANIO"));
 			mat.setCuatrimestre(rs.getInt("CUATRIMESTRE"));
+			mat.setCuatrimestreOrden(rs.getInt("CUATRIMESTRE_ORDEN"));
 			System.out.println(mat.getDescripcion().toString());
 
 			Materias.add(mat);

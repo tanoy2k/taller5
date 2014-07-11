@@ -3,9 +3,11 @@ package ar.com.twitter.model;
 public class materias {
 
 	private int materia;
-
 	private int anio;
-
+	private String descripcion;
+	private int cuatrimestre;
+    private int cuatrimestreOrden;
+    
 	public int getAnio() {
 		return anio;
 	}
@@ -38,7 +40,13 @@ public class materias {
 		this.cuatrimestre = cuatrimestre;
 	}
 
-	private String descripcion;
-	private int cuatrimestre;
+	public int getCuatrimestreOrden() {
+		return cuatrimestreOrden;
+	}
+
+	public void setCuatrimestreOrden(int cuatrimestreOrden) {
+		this.cuatrimestreOrden = cuatrimestreOrden;
+	}
+
 
 }

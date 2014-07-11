@@ -17,6 +17,7 @@ var Materia = function(materiaJson) {// simulo el objeto en javascript
 	this.anio = materiaJson.anio;
 	this.descripcion = materiaJson.descripcion;
 	this.cuatrimestre = materiaJson.cuatrimestre;
+	this.cuatrimestreOrden = materiaJson.cuatrimestreOrden;
 
 	// establezco getters y setters
 	this.setMateriaId = function(materiaId) {
@@ -49,7 +50,12 @@ var Materia = function(materiaJson) {// simulo el objeto en javascript
 	this.getEstado = function() {
 		return self.estado;
 	};
-
+	this.setCuatrimestreOrden = function(cuatrimestreOrden) {
+		self.cuatrimestreOrden = cuatrimestreOrden;
+	};
+	this.getCuatrimestreOrden = function() {
+		return self.cuatrimestreOrden;
+	};
 	// Le doy conocimiento a mi alumno de còmo mostrarse en un row de una
 	// tabla...
 	this.getRow = function() {
@@ -59,7 +65,7 @@ var Materia = function(materiaJson) {// simulo el objeto en javascript
 					, '</td><td>'
 					, self.getMateriaDescripcion() 
 					, '</td><td>'
-					, self.getMateriaId() 
+					, self.getCuatrimestreOrden() 
 					, '</td></tr>'].join("");
 		return rowHtml;
 	};
@@ -102,7 +108,7 @@ var Materias = function() {
 		// primero blanqueo...
 		$('#tablaMaterias').remove();
 		var tbl = $("<table/>").attr("id", "tablaMaterias");
-		var theadHtml = '<tr><th>Anio</th><th>Cuatrimestre</th><th>Descripcion</th><th>Estado</th></tr>';
+		var theadHtml = '<tr><th>Anio</th><th>Cuatrimestre</th><th>Descripcion</th><th>#Cuatrimestre</th></tr>';
 		var thead = $('<thead/>').attr('class', 'tablaMateriasEncabezado');
 		var tbody = $('<tbody/>').attr('class', 'tablaMateriasCuerpo');
 		$("#contenedor").append(tbl);

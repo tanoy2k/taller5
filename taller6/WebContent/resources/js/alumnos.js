@@ -79,12 +79,22 @@ var Alumnos = function(){
 	// el siguiente comportamiento de la clase Alumnos, es mostrar su estado actual en una tabla HTML:
 	this.mostrarEnTabla = function(){
 //		// Creo, en este caso la tabla como elem del DOM ( document object model , estructura jerarquica del documento en el navegador web.)
-		var theadHtml = "<tr><th>Nombre</th><th>Apellido</th><th>DNI</th></tr>";
 		$('#tablaAlumnos').remove();
-		var tbl = viewManager.makeTableGeneric;
-		$(tbl).attr("id","tablaAlumnos");
-		$(tbl).find('thead').append(theadHtml);
-		$("#contenedor").append(tbl);		
+		var tbl = $("<table/>").attr("id", "tablaAlumnos");
+		var theadHtml = "<tr><th>Nombre</th><th>Apellido</th><th>DNI</th></tr>";
+		//var tbl = viewManager.makeTableGeneric;
+		
+		var thead = $('<thead/>').attr('class', 'tablaAlumnoEncabezado');
+		var tbody = $('<tbody/>').attr('class', 'tablaAlumnoCuerpo');
+		$("#contenedor").append(tbl);
+		$('#tablaAlumnos').append(thead);
+		$('#tablaAlumnos').append(tbody);
+		$('#tablaAlumnos').find('thead').append(theadHtml);
+		$('#tablaAlumnos').addClass("table table-striped");
+
+		//$(tbl).attr("id","tablaAlumnos");
+		//$(tbl).find('thead').append(theadHtml);
+		//$("#contenedor").append(tbl);		
 		
 		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Alumno
 	    $.each(self.alumnos, function(i,alumno){

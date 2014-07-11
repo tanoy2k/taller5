@@ -23,6 +23,7 @@
 
 <div style="display: table;">
   <div style="display: table-row">
+    
     <div id="chart_div" style="width: 100%; height: 100%; display: table-cell;"></div>
     <div id="table" style="width: 300px; height: 300px; display: table-cell;"></div>
   </div>

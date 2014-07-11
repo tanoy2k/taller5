@@ -21,15 +21,15 @@ var ViewManager = function(ambito){
 		self.includeRequired('resources/js/alumnos.js');
 		self.includeRequired('resources/js/materias.js');
 		self.includeRequired('resources/js/finales.js');
-		//self.includeRequired('resources/js/charts.js'); 
+		self.includeRequired('resources/js/charts.js'); 
+		
+
+		// inicializo app
 		self.mostrarInicio();
 	};
 	
 
-	
-	
-	this.tableize =  "";
-	
+	this.tableize =  "";	
 	this.configTableize = function(thead,id){
 		//alert(["viewManger dice..tableize!: ", thead ].join("") );
 		// tablizar?...ponele
@@ -140,7 +140,7 @@ this.drawChart = function() {
 	
 	
 	this.mostrarEstadisticas = function(){
-		//self.limpiar();
+		self.limpiar();
 //		var myCharts = new Charts();
 //		myCharts.showStats();
 		

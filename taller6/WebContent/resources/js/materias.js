@@ -107,20 +107,17 @@ var Materias = function() {
 
 		// primero blanqueo...
 		$('#tablaMaterias').remove();
-		var tbl = $("<table/>").attr("id", "tablaMaterias");
 		var theadHtml = '<tr><th>Anio</th><th>Cuatrimestre</th><th>Descripcion</th><th>#Cuatrimestre</th></tr>';
-		var thead = $('<thead/>').attr('class', 'tablaMateriasEncabezado');
-		var tbody = $('<tbody/>').attr('class', 'tablaMateriasCuerpo');
-		$("#contenedor").append(tbl);
-		$('#tablaMaterias').append(thead);
-		$('#tablaMaterias').append(tbody);
-		$('#tablaMaterias').find('thead').append(theadHtml);
-		$('#tablaMaterias').addClass("table table-striped");
-
+		viewManager.configTableize(theadHtml,"tablaMaterias"); //window.viewManager.makeTableGeneric("<tr><td>sfsdf</td></tr>","tablita");
+		console.log(viewManager.tableize); // solo por debug en chrome! quitar o menejar para browsers q no lo soporten
+		$("#contenedor").append($(viewManager.tableize).hide().fadeIn('fast'));
+				
+				
+		
 		// usando jquery y su sintaxis recomendada por convencion, recorremos el
 		// array de objetos Materia
 		$.each(self.materias, function(i, materia) {
-			$('#tablaMaterias').find('tbody').append(materia.getRow());
+			$('#tablaMaterias').find('tbody').append(materia.getRow()).hide().fadeIn('slow');
 		}); // fin .each
 	}; // fin mostrarEnTabla
 }; // fin Materias

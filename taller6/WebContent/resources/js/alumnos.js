@@ -87,7 +87,7 @@ var Alumnos = function(){
 //		$("#contenedor").append(tbl);				
 		viewManager.configTableize(theadHtml,"tablaAlumnos"); //window.viewManager.makeTableGeneric("<tr><td>sfsdf</td></tr>","tablita");
 		console.log(viewManager.tableize); // solo por debug en chrome! quitar o menejar para browsers q no lo soporten
-		$("#contenedor").append($(viewManager.tableize));
+		$("#contenedor").append($(viewManager.tableize).hide().fadeIn('fast'));
 				
 		
 		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Alumno

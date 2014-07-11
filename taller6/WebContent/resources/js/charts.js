@@ -69,6 +69,7 @@ var Charts = function(){
 		
 this.getStats = function(){
 	console.log('drawgrafica');
+	//$('ajaxLoader').show();
   	var urlChartStats = 'chartdata.htm'; // no hace falta poner localhost a fuego!, uri relativa
   	// usando jquery traemos el json desde esa url
   	$.getJSON(urlChartStats , function(chartData){ 	  		 
@@ -110,6 +111,7 @@ this.getStats = function(){
 			};
 	      
 		var chart = new google.visualization.ColumnChart(window.top.document.getElementById("chart_div")); //
+		//$('ajaxLoader').hide();
 		chart.draw(data, options);
     });
 		

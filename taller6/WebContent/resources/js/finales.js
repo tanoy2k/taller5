@@ -152,7 +152,7 @@ var Finales = function(){
 		//var tbl = window.viewManager.getGenericTable("<tr><th>Fecha</th><th>Materia</th><th>Profesores de la mesa</th><th>Acciones</th></tr>","tablaFinales");
 		viewManager.configTableize(theadHtml,"tablaFinales"); //window.viewManager.makeTableGeneric("<tr><td>sfsdf</td></tr>","tablita");
 		console.log(viewManager.tableize);
-		$("#contenedor").append($(viewManager.tableize));
+		$("#contenedor").append($(viewManager.tableize).hide().fadeIn('slow'));
 		
 		// usando jquery y su sintaxis recomendada por convencion, recorremos el array de objetos Alumno
 	    $.each(self.finales, function(i,ffinal){
